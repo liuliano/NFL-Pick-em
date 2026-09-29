@@ -227,7 +227,7 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
 <div class="card"><div class="muted">GAMES FINAL</div><div class="big" id="score">0</div><div id="alive" class="muted">of 16</div></div>
-<div class="card"><div class="muted">WEEK</div><div class="big">3</div><div>2026 NFL</div></div>
+<div class="card"><div class="muted">WEEK</div><div class="big">4</div><div>2026 NFL</div></div>
 <div class="card"><div class="muted">PRIZE POOL</div><div class="big">$195</div><div>$127 • $49 • $19</div></div>
 </div>
 <div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 Top 3 Leaders</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
@@ -305,7 +305,7 @@ function entries(){return raw.split(/\n+/).map(x=>x.trim()).filter(Boolean).map(
 function openStandalonePicks(i){window.location.href="/World-Cup-2026/game-picks.html?game="+encodeURIComponent(i)+"&v=3"}
 function render(){
  const gamesEl=document.getElementById("games");
- gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"LIVE";return '<div class="game" data-game-index="'+i+'"><div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
+ gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i]||week4MarketML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"WEEK 4";return '<div class="game" data-game-index="'+i+'"><div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
  const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=20000, stats={};
  es.forEach(e=>stats[e.name]={p1:0,p2:0,p3:0,any:0,money:0});
  const normal=(mu,sd)=>{let u=1-Math.random(),v=1-Math.random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
@@ -341,17 +341,12 @@ function render(){
 }
 // Legacy card drilldown removed. Only explicit SEE PICKS links navigate.
 function showPlayerByIndex(i){const e=(window.displayedEntries||[])[i];if(e)showPlayer(e.name)}
-const week2MarketML=[
- {away:202,home:-244},{away:-146,home:124},{away:185,home:-222},{away:-344,home:273},
- {away:199,home:-239},{away:-187,home:158},{away:338,home:-438},{away:330,home:-426},
- {away:124,home:-146},{away:131,home:-154},{away:247,home:-306},{away:173,home:-209},
- {away:-207,home:175},{away:652,home:-986},{away:255,home:-311},{away:273,home:-343}
-];
+const week4MarketML=[{away:-148,home:124},{away:-185,home:154},{away:250,home:-310},{away:164,home:-198},{away:124,home:-148},{away:-115,home:-105},{away:-125,home:105},{away:-175,home:145},{away:500,home:-700},{away:120,home:-142},{away:450,home:-600},{away:-240,home:195},{away:135,home:-160},{away:240,home:-300},{away:-145,home:125},{away:145,home:-170}];
 function pickOdds(i,pick){
  if(results[gameKey(i)]) return {line:results[gameKey(i)]===pick?"WIN":"LOSS",src:"FINAL"};
- const o=liveML[i];
- if(o){const ml=pick===games[i][1]?o.home:o.away;if(Number.isFinite(ml))return {line:(ml>0?"+":"")+ml,src:o.provider||"LIVE MONEYLINE"}}
- const m=week2MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 4 MONEYLINE"}}
+ const o=liveML[i]||week4MarketML[i];
+ if(o){const ml=pick===games[i][1]?o.home:o.away;if(Number.isFinite(ml))return {line:(ml>0?"+":"")+ml,src:o.provider||"WEEK 4 MONEYLINE"}}
+ const m=week4MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 4 MONEYLINE"}}
  return {line:"—",src:"ODDS UNAVAILABLE"};
 }
 function showPlayer(name){
