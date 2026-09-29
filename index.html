@@ -222,10 +222,10 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 .pick-only-name{display:flex;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid #17354c;font-size:13px;font-weight:800}.pick-only-group.right .pick-only-name b{color:#7ce3aa}.pick-only-group.wrong .pick-only-name b{color:#ff9da8}
 </style><style id="standalone-picks-button-v2">
 #games button.main-see-picks{appearance:none!important;-webkit-appearance:none!important;border:1px solid #278fd5!important;background:#0d4f83!important;color:#fff!important;font-family:inherit!important;cursor:pointer!important}
-</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 3 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
-<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 3 • 2026 • STRAIGHT-UP</div></div>
+</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 4 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
+<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 4 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
-<div class="card"><div class="muted">POOL</div><div class="big">40</div><div>entries</div></div>
+<div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
 <div class="card"><div class="muted">GAMES FINAL</div><div class="big" id="score">0</div><div id="alive" class="muted">of 16</div></div>
 <div class="card"><div class="muted">WEEK</div><div class="big">3</div><div>2026 NFL</div></div>
 <div class="card"><div class="muted">PRIZE POOL</div><div class="big">$195</div><div>$127 • $49 • $19</div></div>
@@ -237,11 +237,11 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 <div class="card"><h2>League standings</h2><div class="muted">Overall league view. Each player shows their current stats; tap a player for their complete picks, lines, tiebreaker and detailed dashboard.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Any $</th><th>EV $</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
 
 <div id="playerModal" class="player-modal" aria-hidden="true"><div class="player-sheet"><button class="player-close" onclick="closePlayer()" aria-label="Close">×</button><div id="playerDetail"></div></div></div>
-<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 3 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $127 &nbsp; • &nbsp; 🥈 $49 &nbsp; • &nbsp; 🥉 $19</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
+<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 4 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $127 &nbsp; • &nbsp; 🥈 $49 &nbsp; • &nbsp; 🥉 $19</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
 </div><script>
-const games=[["ATL","GB"],["LAC","BUF"],["CAR","CLE"],["NYJ","DET"],["HOU","IND"],["KC","MIA"],["TEN","NYG"],["CIN","PIT"],["SEA","WAS"],["NE","JAC"],["ARI","SF"],["MIN","TB"],["BAL","DAL"],["LV","NO"],["LAR","DEN"],["PHI","CHI"]];
-const stadiums=["Lambeau Field","Highmark Stadium","Huntington Bank Field","Ford Field","Lucas Oil Stadium","Hard Rock Stadium","MetLife Stadium","Acrisure Stadium","Northwest Stadium","EverBank Stadium","Levi’s Stadium","Raymond James Stadium","AT&T Stadium","Caesars Superdome","Empower Field at Mile High","Soldier Field"];
-const me=["GB","BUF","CAR","DET","IND","KC","NYG","CIN","SEA","JAC","SF","TB","BAL","NO","LAR","PHI"];
+const games=[["PIT","CLE"],["IND","WAS"],["NE","BUF"],["NYJ","CHI"],["JAC","CIN"],["ARI","NYG"],["LAR","PHI"],["GB","TB"],["TEN","BAL"],["DAL","HOU"],["MIA","MIN"],["KC","LV"],["DEN","SF"],["LAC","SEA"],["DET","CAR"],["ATL","NO"]];
+const stadiums=["Huntington Bank Field","Tottenham Hotspur Stadium","Highmark Stadium","Soldier Field","Paycor Stadium","MetLife Stadium","Lincoln Financial Field","Raymond James Stadium","M&T Bank Stadium","NRG Stadium","U.S. Bank Stadium","Allegiant Stadium","Levi’s Stadium","Lumen Field","Bank of America Stadium","Caesars Superdome"];
+const me=[];
 const week2Starter=[
 "Amber Lannan|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,CIN,DEN,LAC,DAL,ARI,SF,KC,LAR|44",
 "Ann Lavis|BUF,ATL,MIN,PHI,PIT,NYJ,TB,BAL,CIN,JAC,LAC,WAS,SEA,SF,KC,LAR|47",
@@ -293,55 +293,14 @@ const week2Starter=[
 "Sue Esposito|BUF,ATL,CHI,PHI,PIT,GB,TB,BAL,CIN,DEN,LAC,DAL,SEA,SF,KC,NYG|48",
 "Tom Haak|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,HOU,DEN,LAC,DAL,SEA,SF,KC,LAR|47"
 ].join("\n")
-const starter=[
-"Amber Lannan|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,DAL,NO,LAR,PHI|44",
-"Ann Lavis|GB,BUF,CAR,NYJ,HOU,KC,NYG,PIT,SEA,NE,ARI,TB,BAL,LV,LAR,CHI|38",
-"Ashley Lavis|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|41",
-"B & S Duffy|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,CHI|44",
-"Barb Bialek|GB,BUF,CLE,DET,IND,KC,TEN,CIN,SEA,JAC,SF,MIN,DAL,LV,DEN,PHI|48",
-"Barbara Andrews|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,TB,BAL,LV,DEN,PHI|35",
-"Bill Beaton|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|44",
-"Bill Bennett|GB,BUF,CLE,DET,HOU,KC,NYG,PIT,SEA,NE,SF,TB,DAL,LV,LAR,CHI|42",
-"Bill Chisholm|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|45",
-"Brad Watkins|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|43",
-"Cindy Chisholm|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,NE,SF,MIN,DAL,LV,DEN,CHI|42",
-"Dan Bialek|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,TB,DAL,LV,LAR,PHI|49",
-"David Jarvis|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,NE,SF,MIN,DAL,LV,LAR,PHI|37",
-"Dianne Beaton|GB,BUF,CAR,DET,IND,KC,NYG,PIT,SEA,JAC,SF,MIN,BAL,NO,LAR,CHI|43",
-"Doug & Carol Hartle|GB,BUF,CAR,DET,IND,KC,TEN,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|37",
-"Gloria Collins|GB,BUF,CAR,NYJ,HOU,KC,NYG,CIN,SEA,NE,SF,MIN,BAL,LV,LAR,PHI|52",
-"James Strickland|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,TB,DAL,NO,LAR,PHI|45",
-"Jim Martin|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,NE,SF,TB,BAL,NO,LAR,PHI|44",
-"Jim Trehearne|GB,BUF,CAR,DET,HOU,KC,NYG,PIT,SEA,JAC,SF,MIN,DAL,NO,DEN,PHI|44",
-"John Anzilotti|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|43",
-"John Walter|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|48",
-"Jon Lavis|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|31",
-"Lawrence Iuliano|GB,BUF,CAR,DET,IND,KC,NYG,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|44",
-"Linda Simpson|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,TB,DAL,NO,DEN,PHI|47",
-"LuAnne Pezel|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,TB,BAL,NO,DEN,PHI|41",
-"Michelle Iuliano|GB,BUF,CAR,DET,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,BAL,NO,DEN,PHI|43",
-"Mike Herrilko|GB,BUF,CLE,DET,IND,KC,TEN,CIN,SEA,NE,SF,TB,DAL,NO,LAR,PHI|48",
-"Mike Leonard|GB,BUF,CAR,DET,HOU,KC,TEN,PIT,SEA,JAC,SF,TB,DAL,LV,LAR,PHI|51",
-"Mike Pezel|GB,BUF,CAR,DET,IND,KC,TEN,CIN,SEA,JAC,SF,MIN,DAL,NO,LAR,CHI|29",
-"P & B Duffy|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,CHI|37",
-"P & S Duffy|GB,BUF,CAR,NYJ,HOU,KC,NYG,PIT,SEA,JAC,SF,MIN,DAL,NO,LAR,CHI|37",
-"Pat Kennelly|GB,BUF,CAR,DET,IND,KC,NYG,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|41",
-"Penny Rehm|GB,BUF,CAR,DET,HOU,KC,NYG,PIT,SEA,NE,SF,TB,BAL,NO,DEN,PHI|45",
-"Ray Simpson|GB,BUF,CAR,NYJ,HOU,KC,TEN,CIN,SEA,JAC,SF,MIN,DAL,NO,DEN,PHI|44",
-"Reenie Leonard|GB,BUF,CAR,DET,HOU,KC,NYG,PIT,SEA,JAC,SF,TB,BAL,LV,DEN,PHI|47",
-"Rhonda Krey|GB,BUF,CAR,DET,IND,KC,TEN,CIN,WAS,NE,SF,MIN,BAL,NO,LAR,PHI|44",
-"Rod Herrilko|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,TB,BAL,NO,LAR,PHI|39",
-"Sharon Duffy|ATL,BUF,CAR,DET,IND,KC,NYG,PIT,SEA,JAC,SF,MIN,BAL,LV,LAR,PHI|42",
-"Tim Nelson|GB,BUF,CAR,DET,IND,KC,NYG,CIN,SEA,JAC,SF,MIN,DAL,LV,LAR,PHI|42",
-"Tom Haak|GB,BUF,CAR,DET,HOU,KC,NYG,CIN,SEA,JAC,SF,MIN,BAL,NO,LAR,PHI|41"
-].join("\n");
+const starter="";
 const gameKey=i=>games[i][0]+"-"+games[i][1];
-let savedResults=JSON.parse(localStorage.getItem("nflw3results")||"{}");
+let savedResults=JSON.parse(localStorage.getItem("nflw4results")||"{}");
 let results={};
 Object.keys(savedResults).forEach(k=>{if(k.includes("-"))results[k]=savedResults[k];else if(games[+k])results[gameKey(+k)]=savedResults[k]});
-localStorage.setItem("nflw3results",JSON.stringify(results));
+localStorage.setItem("nflw4results",JSON.stringify(results));
 let liveP={},liveML={},liveGame={},liveScore={};
-let raw=starter; localStorage.setItem("nflw3entries",starter);
+let raw=starter; localStorage.setItem("nflw4entries",starter);
 function entries(){return raw.split(/\n+/).map(x=>x.trim()).filter(Boolean).map(line=>{let [name,p,tb]=line.split("|");return{name,picks:(p||"").split(",").map(x=>x.trim().toUpperCase()),tb:+tb||0}}).filter(x=>x.picks.length===16)}
 function openStandalonePicks(i){window.location.href="/World-Cup-2026/game-picks.html?game="+encodeURIComponent(i)+"&v=3"}
 function render(){
@@ -392,7 +351,7 @@ function pickOdds(i,pick){
  if(results[gameKey(i)]) return {line:results[gameKey(i)]===pick?"WIN":"LOSS",src:"FINAL"};
  const o=liveML[i];
  if(o){const ml=pick===games[i][1]?o.home:o.away;if(Number.isFinite(ml))return {line:(ml>0?"+":"")+ml,src:o.provider||"LIVE MONEYLINE"}}
- const m=week2MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 3 MONEYLINE"}}
+ const m=week2MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 4 MONEYLINE"}}
  return {line:"—",src:"ODDS UNAVAILABLE"};
 }
 function showPlayer(name){
@@ -401,15 +360,15 @@ function showPlayer(name){
  e.picks.forEach((p,i)=>{if(results[gameKey(i)]){done++;if(p===results[gameKey(i)])correct++;}});
  const possible=correct+16-done, pct=x=>((100*(x||0)/20000).toFixed(1)+"%");
  const picks=e.picks.map((p,i)=>{const final=!!results[gameKey(i)],cls=final?(p===results[gameKey(i)]?"win":"loss"):"",status=final?(p===results[gameKey(i)]?"✓ WIN":"✕ LOSS"):(liveGame[i]||"UPCOMING"),score=liveScore[i]?'<em>'+liveScore[i]+'</em>':"",od=pickOdds(i,p),m=liveML[i],raw=m?(p===games[i][1]?m.home:m.away):null,fav=Number.isFinite(raw)&&raw<0?"FAV":Number.isFinite(raw)?"UND":"",imp=Number.isFinite(raw)?Math.round(100*(raw<0?(-raw)/((-raw)+100):100/(raw+100))):null;return '<div class="dash-pick '+cls+'"><div class="pick-team"><small>GAME '+(i+1)+' · '+games[i][0]+' @ '+games[i][1]+'</small><strong>'+p+'</strong>'+score+'</div><div class="line-box"><b>'+od.line+'</b><small>'+fav+'</small></div><div class="pick-right"><span>'+status+'</span>'+(final?'<b>'+(p===results[gameKey(i)]?"100%":"0%")+'</b><small>FINAL</small>':(imp!==null?'<b>'+imp+'%</b><small>IMPLIED</small>':''))+'</div></div>'}).join("");
- document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 3 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>ANY MONEY</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>$'+((st.money||0)/20000).toFixed(2)+'</b><small>EXPECTED $</small></div></div><div class="dash-section">WEEK 3 PICKS</div><div class="dash-picks">'+picks+'</div>';
+ document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 4 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>ANY MONEY</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>$'+((st.money||0)/20000).toFixed(2)+'</b><small>EXPECTED $</small></div></div><div class="dash-section">WEEK 4 PICKS</div><div class="dash-picks">'+picks+'</div>';
  const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");m.scrollTop=0;
 }
 function closePlayer(){const m=document.getElementById("playerModal");m.classList.remove("open");m.setAttribute("aria-hidden","true")}
-function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw3results",JSON.stringify(results));render()}
-async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=3&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw3results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 3 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
-function resetGames(){results={};localStorage.removeItem("nflw3results");render()}
-function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw3entries",raw);render()}
-function restoreEntries(){raw=starter;localStorage.removeItem("nflw3entries");render()}
+function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw4results",JSON.stringify(results));render()}
+async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=4&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw4results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 4 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
+function resetGames(){results={};localStorage.removeItem("nflw4results");render()}
+function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw4entries",raw);render()}
+function restoreEntries(){raw=starter;localStorage.removeItem("nflw4entries");render()}
 render();refreshNFL();setInterval(refreshNFL,60000);
 
 
