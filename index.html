@@ -225,10 +225,10 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 4 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 4 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
-<div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
+<div class="card"><div class="muted">POOL</div><div class="big">54</div><div>entries</div></div>
 <div class="card"><div class="muted">GAMES FINAL</div><div class="big" id="score">0</div><div id="alive" class="muted">of 16</div></div>
 <div class="card"><div class="muted">WEEK</div><div class="big">4</div><div>2026 NFL</div></div>
-<div class="card"><div class="muted">PRIZE POOL</div><div class="big">$195</div><div>$127 • $49 • $19</div></div>
+<div class="card"><div class="muted">PRIZE POOL</div><div class="big">$265</div><div>$172 • $66 • $27</div></div>
 </div>
 <div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 Top 3 Leaders</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
 <div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 • Right / Wrong</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
@@ -237,11 +237,11 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 <div class="card"><h2>League standings</h2><div class="muted">Overall league view. Each player shows their current stats; tap a player for their complete picks, lines, tiebreaker and detailed dashboard.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Any $</th><th>EV $</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
 
 <div id="playerModal" class="player-modal" aria-hidden="true"><div class="player-sheet"><button class="player-close" onclick="closePlayer()" aria-label="Close">×</button><div id="playerDetail"></div></div></div>
-<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 4 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $127 &nbsp; • &nbsp; 🥈 $49 &nbsp; • &nbsp; 🥉 $19</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
+<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 4 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $172 &nbsp; • &nbsp; 🥈 $66 &nbsp; • &nbsp; 🥉 $27</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
 </div><script>
 const games=[["PIT","CLE"],["IND","WAS"],["NE","BUF"],["NYJ","CHI"],["JAC","CIN"],["ARI","NYG"],["LAR","PHI"],["GB","TB"],["TEN","BAL"],["DAL","HOU"],["MIA","MIN"],["KC","LV"],["DEN","SF"],["LAC","SEA"],["DET","CAR"],["ATL","NO"]];
 const stadiums=["Huntington Bank Field","Tottenham Hotspur Stadium","Highmark Stadium","Soldier Field","Paycor Stadium","MetLife Stadium","Lincoln Financial Field","Raymond James Stadium","M&T Bank Stadium","NRG Stadium","U.S. Bank Stadium","Allegiant Stadium","Levi’s Stadium","Lumen Field","Bank of America Stadium","Caesars Superdome"];
-const me=[];
+const me=["PIT","IND","BUF","CHI","CIN","ARI","LAR","GB","BAL","HOU","MIN","KC","SF","SEA","DET","NO"];
 const week2Starter=[
 "Amber Lannan|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,CIN,DEN,LAC,DAL,ARI,SF,KC,LAR|44",
 "Ann Lavis|BUF,ATL,MIN,PHI,PIT,NYJ,TB,BAL,CIN,JAC,LAC,WAS,SEA,SF,KC,LAR|47",
@@ -293,7 +293,62 @@ const week2Starter=[
 "Sue Esposito|BUF,ATL,CHI,PHI,PIT,GB,TB,BAL,CIN,DEN,LAC,DAL,SEA,SF,KC,NYG|48",
 "Tom Haak|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,HOU,DEN,LAC,DAL,SEA,SF,KC,LAR|47"
 ].join("\n")
-const starter="";
+const starter=[
+"Amber Lannan|CLE,IND,BUF,CHI,CIN,ARI,PHI,GB,BAL,HOU,MIN,LV,SF,SEA,DET,NO|46",
+"Ann Lavis|PIT,WAS,BUF,CHI,JAC,ARI,LAR,TB,BAL,HOU,MIN,KC,DEN,SEA,DET,ATL|48",
+"Ashley Lavis|PIT,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,LV,SF,SEA,DET,ATL|42",
+"B & S Duffy|CLE,IND,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|51",
+"Barb Bialek|CLE,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,LV,SF,SEA,DET,ATL|44",
+"Barbara Andrews|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|38",
+"Bernard Phifer|PIT,WAS,BUF,CHI,JAC,NYG,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
+"Bernard & Roxanne Phifer|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,LAC,DET,ATL|46",
+"Bill Beaton|PIT,IND,BUF,CHI,CIN,ARI,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
+"Bill Bennett|PIT,IND,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,KC,DEN,SEA,DET,NO|43",
+"Bill Chisholm|PIT,IND,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|47",
+"Bill Lilburn|CLE,WAS,BUF,CHI,JAC,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|49",
+"Brad Watkins|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|47",
+"Carl Esposito|CLE,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,ATL|43",
+"Carol Curran|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|41",
+"Cindy Chisholm|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,NO|42",
+"Dan Bialek|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|42",
+"David Jarvis|PIT,WAS,BUF,CHI,CIN,NYG,LAR,TB,BAL,DAL,MIN,KC,DEN,SEA,CAR,ATL|37",
+"Dianne Beaton|CLE,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|57",
+"Don Brown|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|47",
+"Doug Hartle|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,LV,SF,SEA,DET,NO|38",
+"Doug & Carol Hartle|CLE,IND,NE,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,LV,DEN,SEA,DET,NO|39",
+"Ed Fowler|CLE,IND,BUF,CHI,JAC,NYG,PHI,TB,BAL,DAL,MIN,KC,DEN,SEA,DET,ATL|48",
+"Glenn Kelleher|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,LV,SF,SEA,DET,NO|45",
+"Gloria Collins|CLE,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,LAC,DET,NO|51",
+"Jeff Partin|PIT,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,SEA,CAR,ATL|59",
+"James Strickland|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|46",
+"Jenny Wern|CLE,WAS,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|45",
+"Jim Martin|CLE,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,LV,SF,SEA,CAR,NO|42",
+"Jim Trehearne|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|48",
+"John Anzilotti|PIT,WAS,NE,CHI,CIN,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|49",
+"Jon Lavis|PIT,IND,BUF,CHI,JAC,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|51",
+"Kevin Lyons|PIT,WAS,BUF,CHI,JAC,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|43",
+"Lawrence Iuliano|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|48",
+"Linda Simpson|PIT,WAS,BUF,CHI,JAC,NYG,PHI,TB,BAL,HOU,MIN,LV,SF,SEA,DET,NO|47",
+"LuAnne Pezel|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|48",
+"Michelle Iuliano|PIT,IND,BUF,NYJ,CIN,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|43",
+"Mike Herrilko|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,LAC,DET,ATL|48",
+"Mike Leonard|PIT,WAS,NE,CHI,JAC,ARI,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|39",
+"Mike Pezel|CLE,WAS,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|42",
+"P & B Duffy|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|51",
+"P & S Duffy|PIT,WAS,BUF,CHI,JAC,ARI,PHI,GB,TEN,HOU,MIN,KC,SF,SEA,DET,ATL|29",
+"Pat Kennelly|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
+"Paula Strakos|CLE,IND,BUF,CHI,JAC,ARI,PHI,GB,BAL,HOU,MIN,LV,DEN,SEA,DET,NO|37",
+"Penny Rehm|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|52",
+"Ray Simpson|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|44",
+"Reenie Leonard|CLE,WAS,BUF,CHI,JAC,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,NO|43",
+"Rod Herrilko|PIT,IND,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|46",
+"Ruth Lilburn|PIT,IND,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,LV,DEN,LAC,CAR,NO|43",
+"Sharon Duffy|CLE,IND,BUF,CHI,JAC,NYG,PHI,GB,BAL,HOU,MIN,KC,SF,SEA,CAR,NO|48",
+"Sue Esposito|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|36",
+"Tim Mesch|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,HOU,MIN,KC,DEN,LAC,DET,ATL|34",
+"Tim Nelson|PIT,WAS,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|42",
+"Tom Haak|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|45"
+].join("\n");
 const gameKey=i=>games[i][0]+"-"+games[i][1];
 let savedResults=JSON.parse(localStorage.getItem("nflw4results")||"{}");
 let results={};
@@ -320,7 +375,7 @@ function render(){
      let k=0; while(k<sameScore.length&&pos<=3){
        const d=sameScore[k].d,tied=[]; while(k<sameScore.length&&sameScore[k].d===d)tied.push(sameScore[k++]);
        const slots=[]; for(let x=0;x<tied.length&&pos+x<=3;x++)slots.push(pos+x);
-       const cash=slots.reduce((z,p)=>z+(p===1?127:p===2?49:19),0)/tied.length;
+       const cash=slots.reduce((z,p)=>z+(p===1?172:p===2?66:27),0)/tied.length;
        tied.forEach(x=>{const st=stats[x.e.name];if(slots.includes(1))st.p1+=1/tied.length;if(slots.includes(2))st.p2+=1/tied.length;if(slots.includes(3))st.p3+=1/tied.length;if(cash>0)st.any+=1;st.money+=cash});
        pos+=tied.length;
      }
