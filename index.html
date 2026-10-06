@@ -222,12 +222,12 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 .pick-only-name{display:flex;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid #17354c;font-size:13px;font-weight:800}.pick-only-group.right .pick-only-name b{color:#7ce3aa}.pick-only-group.wrong .pick-only-name b{color:#ff9da8}
 </style><style id="standalone-picks-button-v2">
 #games button.main-see-picks{appearance:none!important;-webkit-appearance:none!important;border:1px solid #278fd5!important;background:#0d4f83!important;color:#fff!important;font-family:inherit!important;cursor:pointer!important}
-</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 4 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
-<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 4 • 2026 • STRAIGHT-UP</div></div>
+</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
+<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
-<div class="card"><div class="muted">POOL</div><div class="big">54</div><div>entries</div></div>
+<div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
 <div class="card"><div class="muted">GAMES FINAL</div><div class="big" id="score">0</div><div id="alive" class="muted">of 16</div></div>
-<div class="card"><div class="muted">WEEK</div><div class="big">4</div><div>2026 NFL</div></div>
+<div class="card"><div class="muted">WEEK</div><div class="big">5</div><div>2026 NFL</div></div>
 <div class="card"><div class="muted">PRIZE POOL</div><div class="big">$265</div><div>$172 • $66 • $27</div></div>
 </div>
 <div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 Top 3 Leaders</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
@@ -237,11 +237,11 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 <div class="card"><h2>League standings</h2><div class="muted">Overall league view. Each player shows their current stats; tap a player for their complete picks, lines, tiebreaker and detailed dashboard.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Any $</th><th>EV $</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
 
 <div id="playerModal" class="player-modal" aria-hidden="true"><div class="player-sheet"><button class="player-close" onclick="closePlayer()" aria-label="Close">×</button><div id="playerDetail"></div></div></div>
-<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 4 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $172 &nbsp; • &nbsp; 🥈 $66 &nbsp; • &nbsp; 🥉 $27</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
+<div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 5 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $172 &nbsp; • &nbsp; 🥈 $66 &nbsp; • &nbsp; 🥉 $27</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
 </div><script>
-const games=[["PIT","CLE"],["IND","WAS"],["NE","BUF"],["NYJ","CHI"],["JAC","CIN"],["ARI","NYG"],["LAR","PHI"],["GB","TB"],["TEN","BAL"],["DAL","HOU"],["MIA","MIN"],["KC","LV"],["DEN","SF"],["LAC","SEA"],["DET","CAR"],["ATL","NO"]];
-const stadiums=["Huntington Bank Field","Tottenham Hotspur Stadium","Highmark Stadium","Soldier Field","Paycor Stadium","MetLife Stadium","Lincoln Financial Field","Raymond James Stadium","M&T Bank Stadium","NRG Stadium","U.S. Bank Stadium","Allegiant Stadium","Levi’s Stadium","Lumen Field","Bank of America Stadium","Caesars Superdome"];
-const me=["PIT","IND","BUF","CHI","CIN","ARI","LAR","GB","BAL","HOU","MIN","KC","SF","SEA","DET","NO"];
+const games=[["TB","DAL"],["PHI","JAC"],["HOU","TEN"],["CIN","MIA"],["LV","NE"],["MIN","NO"],["CLE","NYJ"],["IND","PIT"],["NYG","WAS"],["DEN","LAC"],["CHI","GB"],["DET","ARI"],["SF","SEA"],["BAL","ATL"],["BUF","LAR"]];
+const stadiums=["AT&T Stadium","Tottenham Hotspur Stadium","Nissan Stadium","Hard Rock Stadium","Gillette Stadium","Caesars Superdome","MetLife Stadium","Acrisure Stadium","Northwest Stadium","SoFi Stadium","Lambeau Field","State Farm Stadium","Lumen Field","Mercedes-Benz Stadium","SoFi Stadium"];
+const me=[];
 const week2Starter=[
 "Amber Lannan|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,CIN,DEN,LAC,DAL,ARI,SF,KC,LAR|44",
 "Ann Lavis|BUF,ATL,MIN,PHI,PIT,NYJ,TB,BAL,CIN,JAC,LAC,WAS,SEA,SF,KC,LAR|47",
@@ -293,74 +293,19 @@ const week2Starter=[
 "Sue Esposito|BUF,ATL,CHI,PHI,PIT,GB,TB,BAL,CIN,DEN,LAC,DAL,SEA,SF,KC,NYG|48",
 "Tom Haak|BUF,CAR,CHI,PHI,NE,GB,TB,BAL,HOU,DEN,LAC,DAL,SEA,SF,KC,LAR|47"
 ].join("\n")
-const starter=[
-"Amber Lannan|CLE,IND,BUF,CHI,CIN,ARI,PHI,GB,BAL,HOU,MIN,LV,SF,SEA,DET,NO|46",
-"Ann Lavis|PIT,WAS,BUF,CHI,JAC,ARI,LAR,TB,BAL,HOU,MIN,KC,DEN,SEA,DET,ATL|48",
-"Ashley Lavis|PIT,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,LV,SF,SEA,DET,ATL|42",
-"B & S Duffy|CLE,IND,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|51",
-"Barb Bialek|CLE,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,LV,SF,SEA,DET,ATL|44",
-"Barbara Andrews|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|38",
-"Bernard Phifer|PIT,WAS,BUF,CHI,JAC,NYG,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
-"Bernard & Roxanne Phifer|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,LAC,DET,ATL|46",
-"Bill Beaton|PIT,IND,BUF,CHI,CIN,ARI,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
-"Bill Bennett|PIT,IND,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,KC,DEN,SEA,DET,NO|43",
-"Bill Chisholm|PIT,IND,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|47",
-"Bill Lilburn|CLE,WAS,BUF,CHI,JAC,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|49",
-"Brad Watkins|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|47",
-"Carl Esposito|CLE,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,ATL|43",
-"Carol Curran|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|41",
-"Cindy Chisholm|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,NO|42",
-"Dan Bialek|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|42",
-"David Jarvis|PIT,WAS,BUF,CHI,CIN,NYG,LAR,TB,BAL,DAL,MIN,KC,DEN,SEA,CAR,ATL|37",
-"Dianne Beaton|CLE,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|57",
-"Don Brown|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|47",
-"Doug Hartle|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,LV,SF,SEA,DET,NO|38",
-"Doug & Carol Hartle|CLE,IND,NE,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,LV,DEN,SEA,DET,NO|39",
-"Ed Fowler|CLE,IND,BUF,CHI,JAC,NYG,PHI,TB,BAL,DAL,MIN,KC,DEN,SEA,DET,ATL|48",
-"Glenn Kelleher|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,LV,SF,SEA,DET,NO|45",
-"Gloria Collins|CLE,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,LAC,DET,NO|51",
-"Jeff Partin|PIT,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,DAL,MIN,KC,SF,SEA,CAR,ATL|59",
-"James Strickland|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|46",
-"Jenny Wern|CLE,WAS,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|45",
-"Jim Martin|CLE,WAS,BUF,CHI,JAC,NYG,LAR,TB,BAL,HOU,MIN,LV,SF,SEA,CAR,NO|42",
-"Jim Trehearne|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|48",
-"John Anzilotti|PIT,WAS,NE,CHI,CIN,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|49",
-"Jon Lavis|PIT,IND,BUF,CHI,JAC,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|51",
-"Kevin Lyons|PIT,WAS,BUF,CHI,JAC,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|43",
-"Lawrence Iuliano|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|48",
-"Linda Simpson|PIT,WAS,BUF,CHI,JAC,NYG,PHI,TB,BAL,HOU,MIN,LV,SF,SEA,DET,NO|47",
-"LuAnne Pezel|PIT,IND,BUF,CHI,CIN,ARI,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|48",
-"Michelle Iuliano|PIT,IND,BUF,NYJ,CIN,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|43",
-"Mike Herrilko|CLE,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,LAC,DET,ATL|48",
-"Mike Leonard|PIT,WAS,NE,CHI,JAC,ARI,PHI,TB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|39",
-"Mike Pezel|CLE,WAS,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|42",
-"P & B Duffy|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,HOU,MIN,KC,SF,SEA,DET,ATL|51",
-"P & S Duffy|PIT,WAS,BUF,CHI,JAC,ARI,PHI,GB,TEN,HOU,MIN,KC,SF,SEA,DET,ATL|29",
-"Pat Kennelly|PIT,IND,BUF,CHI,CIN,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|48",
-"Paula Strakos|CLE,IND,BUF,CHI,JAC,ARI,PHI,GB,BAL,HOU,MIN,LV,DEN,SEA,DET,NO|37",
-"Penny Rehm|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|52",
-"Ray Simpson|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|44",
-"Reenie Leonard|CLE,WAS,BUF,CHI,JAC,ARI,PHI,GB,BAL,DAL,MIN,KC,SF,SEA,CAR,NO|43",
-"Rod Herrilko|PIT,IND,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,NO|46",
-"Ruth Lilburn|PIT,IND,BUF,CHI,JAC,NYG,PHI,GB,BAL,DAL,MIN,LV,DEN,LAC,CAR,NO|43",
-"Sharon Duffy|CLE,IND,BUF,CHI,JAC,NYG,PHI,GB,BAL,HOU,MIN,KC,SF,SEA,CAR,NO|48",
-"Sue Esposito|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|36",
-"Tim Mesch|PIT,WAS,BUF,CHI,JAC,NYG,PHI,GB,BAL,HOU,MIN,KC,DEN,LAC,DET,ATL|34",
-"Tim Nelson|PIT,WAS,BUF,CHI,JAC,NYG,LAR,GB,BAL,DAL,MIN,KC,SF,SEA,DET,ATL|42",
-"Tom Haak|PIT,IND,BUF,CHI,CIN,NYG,LAR,GB,BAL,HOU,MIN,KC,SF,SEA,DET,NO|45"
-].join("\n");
+const starter="";
 const gameKey=i=>games[i][0]+"-"+games[i][1];
-let savedResults=JSON.parse(localStorage.getItem("nflw4results")||"{}");
+let savedResults=JSON.parse(localStorage.getItem("nflw5results")||"{}");
 let results={};
 Object.keys(savedResults).forEach(k=>{if(k.includes("-"))results[k]=savedResults[k];else if(games[+k])results[gameKey(+k)]=savedResults[k]});
-localStorage.setItem("nflw4results",JSON.stringify(results));
+localStorage.setItem("nflw5results",JSON.stringify(results));
 let liveP={},liveML={},liveGame={},liveScore={};
-let raw=starter; localStorage.setItem("nflw4entries",starter);
+let raw=starter; localStorage.setItem("nflw5entries",starter);
 function entries(){return raw.split(/\n+/).map(x=>x.trim()).filter(Boolean).map(line=>{let [name,p,tb]=line.split("|");return{name,picks:(p||"").split(",").map(x=>x.trim().toUpperCase()),tb:+tb||0}}).filter(x=>x.picks.length===16)}
 function openStandalonePicks(i){window.location.href="/World-Cup-2026/game-picks.html?game="+encodeURIComponent(i)+"&v=3"}
 function render(){
  const gamesEl=document.getElementById("games");
- gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i]||week4MarketML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"WEEK 4";return '<div class="game" data-game-index="'+i+'"><div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
+ gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i]||week4MarketML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"WEEK 5";return '<div class="game" data-game-index="'+i+'"><div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
  const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=20000, stats={};
  es.forEach(e=>stats[e.name]={p1:0,p2:0,p3:0,any:0,money:0});
  const normal=(mu,sd)=>{let u=1-Math.random(),v=1-Math.random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
@@ -400,8 +345,8 @@ const week4MarketML=[{away:-148,home:124},{away:-185,home:154},{away:250,home:-3
 function pickOdds(i,pick){
  if(results[gameKey(i)]) return {line:results[gameKey(i)]===pick?"WIN":"LOSS",src:"FINAL"};
  const o=liveML[i]||week4MarketML[i];
- if(o){const ml=pick===games[i][1]?o.home:o.away;if(Number.isFinite(ml))return {line:(ml>0?"+":"")+ml,src:o.provider||"WEEK 4 MONEYLINE"}}
- const m=week4MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 4 MONEYLINE"}}
+ if(o){const ml=pick===games[i][1]?o.home:o.away;if(Number.isFinite(ml))return {line:(ml>0?"+":"")+ml,src:o.provider||"WEEK 5 MONEYLINE"}}
+ const m=week4MarketML[i]; if(m){const ml=pick===games[i][1]?m.home:m.away;return {line:(ml>0?"+":"")+ml,src:"WEEK 5 MONEYLINE"}}
  return {line:"—",src:"ODDS UNAVAILABLE"};
 }
 function showPlayer(name){
@@ -410,15 +355,15 @@ function showPlayer(name){
  e.picks.forEach((p,i)=>{if(results[gameKey(i)]){done++;if(p===results[gameKey(i)])correct++;}});
  const possible=correct+16-done, pct=x=>((100*(x||0)/20000).toFixed(1)+"%");
  const picks=e.picks.map((p,i)=>{const final=!!results[gameKey(i)],cls=final?(p===results[gameKey(i)]?"win":"loss"):"",status=final?(p===results[gameKey(i)]?"✓ WIN":"✕ LOSS"):(liveGame[i]||"UPCOMING"),score=liveScore[i]?'<em>'+liveScore[i]+'</em>':"",od=pickOdds(i,p),m=liveML[i],raw=m?(p===games[i][1]?m.home:m.away):null,fav=Number.isFinite(raw)&&raw<0?"FAV":Number.isFinite(raw)?"UND":"",imp=Number.isFinite(raw)?Math.round(100*(raw<0?(-raw)/((-raw)+100):100/(raw+100))):null;return '<div class="dash-pick '+cls+'"><div class="pick-team"><small>GAME '+(i+1)+' · '+games[i][0]+' @ '+games[i][1]+'</small><strong>'+p+'</strong>'+score+'</div><div class="line-box"><b>'+od.line+'</b><small>'+fav+'</small></div><div class="pick-right"><span>'+status+'</span>'+(final?'<b>'+(p===results[gameKey(i)]?"100%":"0%")+'</b><small>FINAL</small>':(imp!==null?'<b>'+imp+'%</b><small>IMPLIED</small>':''))+'</div></div>'}).join("");
- document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 4 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>ANY MONEY</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>$'+((st.money||0)/20000).toFixed(2)+'</b><small>EXPECTED $</small></div></div><div class="dash-section">WEEK 4 PICKS</div><div class="dash-picks">'+picks+'</div>';
+ document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 5 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>ANY MONEY</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>$'+((st.money||0)/20000).toFixed(2)+'</b><small>EXPECTED $</small></div></div><div class="dash-section">WEEK 5 PICKS</div><div class="dash-picks">'+picks+'</div>';
  const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");m.scrollTop=0;
 }
 function closePlayer(){const m=document.getElementById("playerModal");m.classList.remove("open");m.setAttribute("aria-hidden","true")}
-function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw4results",JSON.stringify(results));render()}
-async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=4&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw4results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 4 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
-function resetGames(){results={};localStorage.removeItem("nflw4results");render()}
-function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw4entries",raw);render()}
-function restoreEntries(){raw=starter;localStorage.removeItem("nflw4entries");render()}
+function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw5results",JSON.stringify(results));render()}
+async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=5&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw5results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 5 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
+function resetGames(){results={};localStorage.removeItem("nflw5results");render()}
+function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw5entries",raw);render()}
+function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");render()}
 render();refreshNFL();setInterval(refreshNFL,60000);
 
 
