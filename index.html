@@ -246,130 +246,19 @@ button{background:#173e2b;border-color:#3b7655}.muted,.sub{color:var(--muted)}
 table{font-size:12px}thead th{background:#0b1712;color:#cbd8d1}th,td{border-bottom-color:#22382e}tbody tr:nth-child(even){background:#ffffff04}tbody tr:hover{background:#ffffff08}.me{outline:2px solid var(--win)!important;background:#123323!important}
 .player-link{color:#a7d8bb}.good{color:var(--win)}.bad{color:var(--loss)}.warn{color:#e5c66c}
 @media(max-width:600px){.wrap{padding:10px}.hero{margin:-10px -10px 10px;padding:17px 15px 14px}.hero h1{font-size:25px}.league-summary{margin:8px 0 10px}.league-summary .card{padding:10px 4px!important}.league-summary .big{font-size:21px}.league-summary .card>div:last-child{font-size:8px}.card{padding:12px;margin:9px 0}.game{padding:12px 10px!important}.game b{font-size:16px!important}.league-head h2{font-size:16px}.league-head button{padding:8px;font-size:11px}}
-</style><style id="scoreboard-redesign-v2">
-body{background:#07100b!important;background-image:linear-gradient(#0008,#0008),repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),#fff08 calc(10% - 1px),#fff08 10%)!important;background-attachment:fixed!important}
-.wrap{max-width:900px!important}
-.hero{min-height:168px!important;padding:25px 24px 18px!important;background:linear-gradient(180deg,#184d2d,#0d2819)!important;border:1px solid #386448!important;border-bottom:5px solid #f4f7f5!important;border-radius:0 0 22px 22px!important}
-.hero:before{opacity:.22!important;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 2px),#fff calc(10% - 2px),#fff 10%)!important;mask-image:linear-gradient(to bottom,#0000,#000 45%,#0000)}
-.hero:after{display:none!important}.hero-kicker{font-size:10px;font-weight:900;letter-spacing:2px;color:#b9d3c1}.hero-main{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:12px}.hero h1{font-size:38px!important;line-height:1;margin:0!important;letter-spacing:-.5px!important}.hero h1 span{display:inline-block;background:#e9f0ec;color:#102719;padding:5px 8px;border-radius:5px;font-size:.45em;vertical-align:middle;letter-spacing:1px}.hero-sub{margin-top:8px;font-size:13px;font-weight:900;letter-spacing:2px;color:#dce9e1}.football-mark{font-size:52px;filter:drop-shadow(0 5px 8px #0007)}.yardline{display:flex;justify-content:space-between;margin-top:18px;border-top:2px solid #ffffff45}.yardline i{height:8px;border-left:2px solid #ffffff65}
-.league-summary{margin-top:-1px!important;border-radius:0 0 15px 15px!important;border-top:0!important;background:#0b1510!important}.league-summary .card{padding:14px 7px!important}.league-summary .big{font-size:28px!important;color:#fff}.league-summary .muted{color:#77c893!important}.league-summary .card>div:last-child{display:none}
-.scoreboard-label{display:inline-block;margin-bottom:8px;padding:4px 7px;border-radius:4px;background:#e8eee9;color:#102619;font-size:9px;font-weight:950;letter-spacing:1.3px}
-.leaders-card{padding:16px!important;border:1px solid #5c6840!important;background:linear-gradient(145deg,#1b271d,#101712)!important}.leaders-card h2{font-size:21px!important}.leader-row{border:1px solid #334b3a!important;background:#0b1510!important;border-radius:10px!important;margin:7px 0!important;padding:12px!important}.leader-place{font-size:24px!important}.leader-name{font-size:14px!important}.leader-score{color:#a8b8ad!important}
-.top10-card{background:#0b1510!important}
-.league-games{padding:14px!important;background:#08100c!important;border:1px solid #385342!important}.league-head{margin-bottom:8px}.league-head h2{font-size:23px!important;text-transform:uppercase;letter-spacing:1px}
-#games{gap:12px!important}#games .game{overflow:hidden!important;padding:0!important;border:1px solid #355340!important;border-radius:14px!important;background:#111d16!important;box-shadow:0 8px 22px #0005!important}#games .game:before{display:none!important}
-#games .game-top{min-height:126px!important;padding:17px 16px!important;align-items:center!important;background:linear-gradient(90deg,#122219,#0d1711)!important;position:relative}
-#games .game-top:after{content:"";position:absolute;left:50%;top:15px;bottom:15px;border-left:1px dashed #ffffff18}
-#games .game-main b{display:block!important;font-size:27px!important;line-height:1.05!important;letter-spacing:1.2px!important;color:#fff!important}#games .game-main>div[style*="font-size:22px"]{margin-top:8px!important;font-size:18px!important;color:#83d09e!important}
-#games .game-main .muted{font-size:11px!important;text-transform:uppercase!important;letter-spacing:.8px!important;margin-top:5px}.stadium{margin-top:6px!important;font-size:10px!important;color:#81978a!important}
-#games .game-side{min-width:126px!important}.live-odds{background:#08110c!important;border:1px solid #2e4938!important;border-radius:10px!important;padding:9px!important}.live-odds small{color:#75c791!important;letter-spacing:1px!important}.live-odds span{font-size:12px!important}.live-odds b{font-size:13px!important;color:#fff!important}
-#games .main-see-picks{margin:0!important;border:0!important;border-top:1px solid #355340!important;border-radius:0!important;background:#173e28!important;min-height:44px!important;padding:12px!important;color:#eaf4ed!important}
-.standings-card{border-top:4px solid #2c7a49!important}.standings-card h2{font-size:22px!important}
-#apiStatus{margin:0 0 12px!important;border-radius:8px!important}
-@media(max-width:600px){.hero{min-height:148px!important;padding:21px 16px 15px!important}.hero h1{font-size:31px!important}.football-mark{font-size:42px}.league-summary .big{font-size:22px!important}.league-summary .muted{font-size:8px!important}.top10-card{display:none!important}#games .game-top{min-height:116px!important;padding:15px 13px!important}#games .game-main b{font-size:23px!important}#games .game-side{min-width:112px!important}.stadium{max-width:175px}.leaders-card{padding:13px!important}}
-</style><style id="live-game-treatment">
-#games .game.is-live{border:2px solid #59d98a!important;box-shadow:0 0 0 1px #59d98a22,0 0 24px #29b86625!important}
-#games .game.is-live .game-top{background:linear-gradient(90deg,#143522,#10251a)!important}
-.game-live-badge,.game-final-badge{position:absolute;right:12px;top:10px;z-index:8;padding:5px 8px;border-radius:5px;font-size:9px;font-weight:950;letter-spacing:1px}
-.game-live-badge{background:#d9343b;color:#fff;box-shadow:0 0 12px #d9343b66}.game-live-badge span{display:inline-block;width:6px;height:6px;margin-right:4px;border-radius:50%;background:#fff;animation:livepulse 1.2s infinite}
-.game-final-badge{background:#26332c;color:#b8c7bd;border:1px solid #405348}
-#games .game.is-live .game-main .muted{color:#75e09b!important;font-weight:900!important;font-size:13px!important}
-#games .game.is-final{opacity:.9}
-@keyframes livepulse{0%,100%{opacity:1}50%{opacity:.25}}
-@media(max-width:600px){.game-live-badge,.game-final-badge{right:8px;top:7px}}
-</style><style id="mobile-spacing-fix-20261007">
-@media(max-width:600px){
-.league-games{padding:12px 10px!important}
-#games{display:grid!important;gap:10px!important}
-#games .game{margin:0!important}
-#games .game-top{min-height:0!important;padding:13px 12px 11px!important;align-items:flex-start!important}
-#games .game-main b{font-size:22px!important;line-height:1!important}
-#games .game-main>div[style*="font-size:22px"]{margin-top:9px!important;font-size:17px!important;line-height:1.15!important}
-#games .game-main .muted{margin-top:8px!important;line-height:1.2!important}
-#games .stadium{margin-top:7px!important;line-height:1.2!important;max-width:190px!important}
-#games .game-side{min-width:108px!important;margin-top:45px!important}
-#games .live-odds{padding:9px 10px!important}
-#games .main-see-picks{min-height:42px!important;padding:11px!important;margin:0!important}
-}
-</style><style id="mobile-card-overlap-fix-20261007">
-@media(max-width:600px){
-#games .game-top{display:grid!important;grid-template-columns:minmax(0,1fr) 112px!important;gap:8px!important;align-items:start!important;padding:13px 10px 12px!important}
-#games .game-main{grid-column:1!important;min-width:0!important}
-#games .game-side{grid-column:2!important;grid-row:1!important;min-width:0!important;width:112px!important;margin:0!important;padding-top:42px!important;align-self:start!important}
-#games .game-main b{font-size:21px!important;white-space:nowrap!important}
-#games .stadium{max-width:none!important;padding-right:0!important;font-size:9px!important;overflow-wrap:anywhere!important}
-#games .live-odds{width:100%!important;box-sizing:border-box!important}
-#games .game-top:after{display:none!important}
-}
-</style><style id="mobile-title-clip-fix-20261007">
-@media(max-width:600px){
-#games .game{overflow:visible!important}
-#games .game-top{padding-top:18px!important;border-radius:13px 13px 0 0!important}
-#games .game-main{min-width:0!important;overflow:visible!important}
-#games .game-main b{display:block!important;margin:0!important;padding:2px 0 3px 2px!important;font-size:20px!important;line-height:1.2!important;white-space:nowrap!important;overflow:visible!important}
-#games .main-see-picks{border-radius:0 0 13px 13px!important}
-}
-</style><style id="mobile-card-rebuild-20261007">
-@media(max-width:600px){
-#games .game{overflow:hidden!important;border-radius:13px!important}
-#games .game-top{display:flex!important;flex-direction:column!important;min-height:0!important;padding:16px 12px 12px!important;gap:10px!important}
-#games .game-main{width:100%!important;overflow:visible!important}
-#games .game-main b{font-size:21px!important;line-height:1.2!important;padding:0!important;margin:0!important}
-#games .game-side{width:100%!important;min-width:0!important;margin:0!important;padding:0!important;align-self:stretch!important}
-#games .live-odds{width:100%!important;box-sizing:border-box!important;margin:0!important;padding:10px 12px!important;display:grid!important;grid-template-columns:1fr auto!important}
-#games .live-odds small{grid-column:1/-1!important;text-align:right!important}
-#games .game-top:after{display:none!important}
-#games .main-see-picks{border-radius:0!important}
-}
-</style><style id="mobile-right-odds-final-20261007">
-@media(max-width:600px){
-#games .game-top{display:grid!important;grid-template-columns:minmax(0,1fr) 104px!important;grid-template-rows:auto!important;column-gap:10px!important;align-items:stretch!important;padding:16px 12px 12px!important}
-#games .game-main{grid-column:1!important;grid-row:1!important;width:auto!important;min-width:0!important}
-#games .game-side{grid-column:2!important;grid-row:1!important;width:104px!important;min-width:104px!important;margin:0!important;padding:0!important;align-self:stretch!important;display:flex!important;align-items:flex-end!important}
-#games .live-odds{width:104px!important;min-width:104px!important;margin:0!important;padding:9px 8px!important;box-sizing:border-box!important;display:block!important}
-#games .live-odds small{display:block!important;text-align:right!important;margin-bottom:5px!important;font-size:8px!important}
-#games .live-odds span{display:flex!important;justify-content:space-between!important;gap:5px!important;line-height:1.55!important;font-size:11px!important}
-#games .live-odds b{font-size:12px!important}
-#games .game-main b{font-size:20px!important;white-space:nowrap!important}
-#games .stadium{font-size:8.5px!important;line-height:1.25!important;overflow-wrap:normal!important;word-break:normal!important}
-}
-</style><style id="mobile-right-odds-clean-20261007">
-@media(max-width:600px){
-#games .game-top{display:grid!important;grid-template-columns:minmax(0,1fr) 112px!important;column-gap:10px!important;align-items:start!important;padding:16px 12px 13px!important}
-#games .game-main{grid-column:1!important;min-width:0!important}
-#games .game-side{grid-column:2!important;width:112px!important;min-width:112px!important;margin:0!important;padding:0!important;align-self:start!important;display:block!important}
-#games .live-odds{width:112px!important;min-width:112px!important;margin:0!important;padding:9px 10px!important;box-sizing:border-box!important;display:block!important;border-radius:9px!important}
-#games .live-odds small{display:block!important;text-align:right!important;margin:0 0 6px!important;font-size:8px!important;line-height:1.1!important}
-#games .live-odds span{display:flex!important;justify-content:space-between!important;align-items:center!important;width:100%!important;gap:6px!important;font-size:11px!important;line-height:1.7!important;white-space:nowrap!important}
-#games .live-odds span b{margin-left:auto!important;font-size:13px!important;line-height:1.2!important}
-#games .game-main b{font-size:19px!important;line-height:1.2!important}
-#games .game-main>div[style*="font-size:22px"]{font-size:16px!important}
-#games .stadium{font-size:8px!important;line-height:1.2!important;white-space:normal!important}
-}
-</style><style id="mobile-true-right-panel-20261007">
-@media(max-width:600px){
-#games .game-top{position:relative!important;display:block!important;min-height:150px!important;padding:16px 132px 14px 12px!important}
-#games .game-main{display:block!important;width:auto!important;min-width:0!important}
-#games .game-side{position:absolute!important;right:12px!important;top:16px!important;bottom:auto!important;width:108px!important;min-width:108px!important;margin:0!important;padding:0!important;display:block!important}
-#games .live-odds{width:108px!important;min-width:108px!important;margin:0!important;padding:9px 9px!important}
-#games .game-main b{font-size:20px!important;white-space:nowrap!important}
-#games .game-main>div[style*="font-size:22px"]{font-size:16px!important;white-space:nowrap!important}
-#games .game-main .muted{font-size:10px!important;white-space:nowrap!important}
-#games .stadium{font-size:8px!important;line-height:1.25!important;white-space:normal!important}
-}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
-<div class="hero"><div class="hero-kicker">2026 NFL • STRAIGHT-UP POOL</div><div class="hero-main"><div><h1>PICK’EM <span>LIVE</span></h1><div class="hero-sub">WEEK 5 SCOREBOARD</div></div><div class="football-mark">🏈</div></div><div class="yardline"><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
 <div class="card"><div class="muted">GAMES PLAYED</div><div class="big" id="score">0 / 15</div><div id="alive" class="muted">0 games final</div></div>
 <div class="card"><div class="muted">WEEK</div><div class="big">5</div><div>2026 NFL</div></div>
 <div class="card"><div class="muted">PRIZE POOL</div><div class="big">$265</div><div>$172 • $66 • $27</div></div>
 </div>
-<div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="scoreboard-label">CURRENT PODIUM</div><div class="row"><h2 style="margin-right:auto">🏆 LEADERBOARD</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
-<div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 Scoreboard</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
-<div class="card league-games"><div class="scoreboard-label">WEEK 5 • GAME BOARD</div><div class="row league-head"><h2>Matchups</h2><button onclick="refreshNFL()">↻ ESPN Live</button></div><div id="apiStatus" class="muted"><span class="live-dot"></span>ESPN LIVE • Scores refresh automatically every 60 seconds</div><div id="games" class="games"></div></div>
+<div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 LEADERBOARD</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
+<div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 • Right / Wrong</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
+<div class="card league-games"><div class="row league-head"><h2>League scoreboard</h2><button onclick="refreshNFL()">↻ ESPN Live</button></div><div id="apiStatus" class="muted"><span class="live-dot"></span>ESPN LIVE • Scores refresh automatically every 60 seconds</div><div id="games" class="games"></div></div>
 <div id="place" style="display:none"></div><div id="winProb" style="display:none"></div><div id="probNote" style="display:none"></div><div id="myPicks" style="display:none"></div>
-<div class="card standings-card"><div class="scoreboard-label">POOL RANKINGS</div><h2>League Standings</h2><div class="muted">Overall league view. Each player shows their current stats; tap a player for their complete picks, lines, tiebreaker and detailed dashboard.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Any $</th><th>EV $</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
+<div class="card"><h2>League standings</h2><div class="muted">Overall league view. Each player shows their current stats; tap a player for their complete picks, lines, tiebreaker and detailed dashboard.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Any $</th><th>EV $</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
 
 <div id="playerModal" class="player-modal" aria-hidden="true"><div class="player-sheet"><button class="player-close" onclick="closePlayer()" aria-label="Close">×</button><div id="playerDetail"></div></div></div>
 <div class="card" style="text-align:center"><div class="muted" style="font-size:11px;letter-spacing:1px">WEEK 5 PRIZE POOL</div><div style="font-size:18px;font-weight:900;margin-top:5px">🥇 $172 &nbsp; • &nbsp; 🥈 $66 &nbsp; • &nbsp; 🥉 $27</div><div class="muted" style="margin-top:5px">Ties split prize money for that place</div></div>
@@ -434,13 +323,13 @@ let savedResults=JSON.parse(localStorage.getItem("nflw5results")||"{}");
 let results={};
 Object.keys(savedResults).forEach(k=>{if(k.includes("-"))results[k]=savedResults[k];else if(games[+k])results[gameKey(+k)]=savedResults[k]});
 localStorage.setItem("nflw5results",JSON.stringify(results));
-let liveP={},liveML={},liveGame={},liveScore={},liveState={};
+let liveP={},liveML={},liveGame={},liveScore={};
 let raw=starter; localStorage.setItem("nflw5entries",starter);
 function entries(){return raw.split(/\n+/).map(x=>x.trim()).filter(Boolean).map(line=>{let [name,p,tb]=line.split("|");return{name,picks:(p||"").split(",").map(x=>x.trim().toUpperCase()),tb:+tb||0}}).filter(x=>x.picks.length===games.length)}
 function openStandalonePicks(i){window.location.href="/World-Cup-2026/game-picks.html?game="+encodeURIComponent(i)+"&v=3"}
 function render(){
  const gamesEl=document.getElementById("games");
- gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i]||week4MarketML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"WEEK 5";const ls=liveState[i]||{};const stateClass=ls.live?' is-live':(ls.final?' is-final':'');const stateBadge=ls.live?'<div class="game-live-badge"><span></span> LIVE</div>':(ls.final?'<div class="game-final-badge">FINAL</div>':'');return '<div class="game'+stateClass+'" data-game-index="'+i+'>'+stateBadge+'<div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
+ gamesEl.innerHTML=games.map((g,i)=>{const r=results[gameKey(i)]||"",o=liveML[i]||week4MarketML[i],fmt=n=>Number.isFinite(n)?(n>0?"+":"")+n:"—",src=liveML[i]?(liveML[i].provider||"LIVE"):"WEEK 5";return '<div class="game" data-game-index="'+i+'"><div class="game-top"><div class="game-main"><b>'+g[0]+' @ '+g[1]+'</b><div style="font-size:22px;font-weight:900">'+(liveScore[i]||'—  •  —')+'</div><div class="muted">'+(liveGame[i]||('Game '+(i+1)))+'</div><div class="stadium">📍 '+stadiums[i]+'</div></div><div class="game-side">'+(r?'<div class="chip" style="font-size:14px">'+r+'</div>':'')+(!r&&o?'<div class="live-odds"><small>'+src+' ML</small><span>'+g[0]+' <b>'+fmt(o.away)+'</b></span><span>'+g[1]+' <b>'+fmt(o.home)+'</b></span></div>':'')+'</div></div><a class="main-see-picks" href="./game-picks.html?game='+i+'">SEE PICKS ›</a></div>'}).join("");
  const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=20000, stats={};
  es.forEach(e=>stats[e.name]={p1:0,p2:0,p3:0,any:0,money:0});
  const normal=(mu,sd)=>{let u=1-Math.random(),v=1-Math.random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
@@ -495,7 +384,7 @@ function showPlayer(name){
 }
 function closePlayer(){const m=document.getElementById("playerModal");m.classList.remove("open");m.setAttribute("aria-hidden","true")}
 function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw5results",JSON.stringify(results));render()}
-async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=5&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};liveState={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;const stateName=String(st.state||"").toLowerCase(),stateDesc=String(st.description||"").toLowerCase();liveState[i]={live:stateName==="in"||stateDesc==="in progress",final:st.completed===true};if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw5results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 5 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
+async function refreshNFL(){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=5&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;liveP={};liveML={};liveGame={};liveScore={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(Number.isFinite(hml)&&hml!==0)liveML[i]={home:hml,away:Number.isFinite(aml)&&aml!==0?aml:null,provider:odds?.provider?.name||"ESPN odds"};let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null)liveP[i]=Number(pred)/100;else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null)liveP[i]=Number(hp);else if(Number.isFinite(hml)&&hml!==0)liveP[i]=hml<0?(-hml)/((-hml)+100):100/(hml+100)}}});localStorage.setItem("nflw5results",JSON.stringify(results));render();s.textContent="ESPN refreshed • "+matched+" Week 5 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
 function resetGames(){results={};localStorage.removeItem("nflw5results");render()}
 function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw5entries",raw);render()}
 function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");render()}
