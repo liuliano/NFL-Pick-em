@@ -222,15 +222,39 @@ body.game-picks-mode .lm-wrap{max-width:620px!important}
 .pick-only-name{display:flex;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid #17354c;font-size:13px;font-weight:800}.pick-only-group.right .pick-only-name b{color:#7ce3aa}.pick-only-group.wrong .pick-only-name b{color:#ff9da8}
 </style><style id="standalone-picks-button-v2">
 #games button.main-see-picks{appearance:none!important;-webkit-appearance:none!important;border:1px solid #278fd5!important;background:#0d4f83!important;color:#fff!important;font-family:inherit!important;cursor:pointer!important}
+</style><style id="football-redesign-20261007">
+:root{--bg:#07100d;--panel:#101a16;--panel2:#14221c;--field:#1f6f43;--field2:#174f32;--line:#294438;--text:#f4f7f5;--muted:#9eafa6;--gold:#d6b65d;--win:#5ed28b;--loss:#e46c72}
+body{background:radial-gradient(circle at 50% -120px,#1b5436 0,#0a1712 390px,#060c0a 100%);color:var(--text)}
+.wrap{max-width:1040px;padding:14px 16px 28px}
+.hero{margin:0 0 12px;padding:18px 18px 16px;border-radius:0 0 18px 18px;background:linear-gradient(135deg,#173f2b,#0b1712 72%);border:1px solid #315744;border-top:0;border-bottom:3px solid var(--field);box-shadow:0 10px 30px #0007}
+.hero:before{content:"";position:absolute;inset:0;opacity:.08;background:repeating-linear-gradient(90deg,transparent 0,transparent 9.5%,#fff 9.7%,transparent 10%);pointer-events:none}
+.hero:after{content:"";right:18px;top:15px;width:54px;height:32px;border:2px solid #ffffff20;border-radius:50%;transform:rotate(-18deg)}
+.hero h1{font-size:30px;letter-spacing:1.5px;font-weight:950}.hero>div:first-child{font-size:11px!important;color:#a9b8b0!important}.hero>div:last-child{font-size:12px;font-weight:800;letter-spacing:.8px}
+.league-summary{grid-template-columns:repeat(4,1fr);gap:0;margin:10px 0 12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0d1713}
+.league-summary .card{margin:0!important;border:0!important;border-right:1px solid var(--line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:12px 10px!important;text-align:center}
+.league-summary .card:last-child{border-right:0!important}.league-summary .muted{font-size:9px;letter-spacing:1px;font-weight:900}.league-summary .big{font-size:25px;margin:2px 0}.league-summary .card>div:last-child{font-size:10px;color:var(--muted)}
+.card{background:linear-gradient(180deg,#111e19,#0c1511);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px #0003}.card h2{font-size:17px;letter-spacing:.2px;margin:3px 0 10px}
+.leaders-card{border-top:2px solid var(--gold)}.top10-card{border-top:2px solid #49695a}.league-games{padding:12px}
+#apiStatus{background:#09110e;border:1px solid #223a30;border-left:3px solid var(--field);color:var(--muted)}
+.live-dot{background:#66dc91;box-shadow:0 0 10px #66dc91}
+.game{background:linear-gradient(180deg,#14221c,#0c1612)!important;border:1px solid #294438!important;border-radius:13px!important;padding:14px!important;box-shadow:0 5px 15px #0003}
+.game:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--field);border-radius:13px 0 0 13px}
+.game b{font-size:17px!important;letter-spacing:.5px}.chip{background:#183d2b!important;border:1px solid #347451!important;box-shadow:none!important;border-radius:8px!important}
+#games button.main-see-picks{background:#173e2b!important;border:1px solid #3b7655!important;border-radius:8px!important;letter-spacing:.6px!important;font-size:11px!important;text-transform:uppercase}
+button{background:#173e2b;border-color:#3b7655}.muted,.sub{color:var(--muted)}
+.live-badge{background:#183d2b!important;color:#87e1a8!important;border-color:#347451!important}
+table{font-size:12px}thead th{background:#0b1712;color:#cbd8d1}th,td{border-bottom-color:#22382e}tbody tr:nth-child(even){background:#ffffff04}tbody tr:hover{background:#ffffff08}.me{outline:2px solid var(--win)!important;background:#123323!important}
+.player-link{color:#a7d8bb}.good{color:var(--win)}.bad{color:var(--loss)}.warn{color:#e5c66c}
+@media(max-width:600px){.wrap{padding:10px}.hero{margin:-10px -10px 10px;padding:17px 15px 14px}.hero h1{font-size:25px}.league-summary{margin:8px 0 10px}.league-summary .card{padding:10px 4px!important}.league-summary .big{font-size:21px}.league-summary .card>div:last-child{font-size:8px}.card{padding:12px;margin:9px 0}.game{padding:12px 10px!important}.game b{font-size:16px!important}.league-head h2{font-size:16px}.league-head button{padding:8px;font-size:11px}}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
-<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>🏈 PICK'EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
+<div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">0</div><div>entries pending</div></div>
 <div class="card"><div class="muted">GAMES FINAL</div><div class="big" id="score">0</div><div id="alive" class="muted">of 16</div></div>
 <div class="card"><div class="muted">WEEK</div><div class="big">5</div><div>2026 NFL</div></div>
 <div class="card"><div class="muted">PRIZE POOL</div><div class="big">$265</div><div>$172 • $66 • $27</div></div>
 </div>
-<div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 Top 3 Leaders</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
+<div class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 LEADERBOARD</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
 <div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 • Right / Wrong</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
 <div class="card league-games"><div class="row league-head"><h2>League scoreboard</h2><button onclick="refreshNFL()">↻ ESPN Live</button></div><div id="apiStatus" class="muted"><span class="live-dot"></span>ESPN LIVE • Scores refresh automatically every 60 seconds</div><div id="games" class="games"></div></div>
 <div id="place" style="display:none"></div><div id="winProb" style="display:none"></div><div id="probNote" style="display:none"></div><div id="myPicks" style="display:none"></div>
