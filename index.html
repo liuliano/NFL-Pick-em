@@ -403,7 +403,7 @@ html{scroll-behavior:smooth;scroll-padding-top:78px}
 </div>
 <div id="leadersSection" class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 LEADERBOARD</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
 <div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 • Right / Wrong</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
-<div id="scoreboardSection" class="card league-games"><div class="row league-head"><h2>League scoreboard</h2><button onclick="refreshNFL(true)">↻ ESPN Live</button></div><div id="apiStatus" class="muted"><span class="live-dot"></span>ESPN LIVE • Scores refresh automatically every 60 seconds</div><div id="games" class="games"></div></div>
+<div id="scoreboardSection" class="card league-games"><div class="row league-head"><h2>League scoreboard</h2><button onclick="refreshNFL(true)">↻ Refresh ESPN</button></div><div id="apiStatus" class="muted"><span class="live-dot"></span>ESPN data updates only when you press Refresh ESPN</div><div id="games" class="games"></div></div>
 <div id="place" style="display:none"></div><div id="winProb" style="display:none"></div><div id="probNote" style="display:none"></div><div id="myPicks" style="display:none"></div>
 <div id="standingsSection" class="card"><h2>League standings</h2><div class="muted compact-standings-hint">Tap a player to see their picks and tiebreaker details.</div><div id="mobileStandings" class="mobile-standings"></div><div class="scroll desktop-standings"><table><thead><tr><th>#</th><th>Name</th><th>Correct</th><th>Possible</th><th>1st</th><th>2nd</th><th>3rd</th><th>Top 3 %</th><th>TB</th></tr></thead><tbody id="standings"></tbody></table></div></div>
 
@@ -570,7 +570,7 @@ async function refreshNFL(force=false){const s=document.getElementById("apiStatu
 function resetGames(){results={};localStorage.removeItem("nflw5results");render()}
 function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw5entries",raw);render()}
 function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");render()}
-render();refreshNFL();setInterval(refreshNFL,60000);
+render();
 
 
 </script><script id="hybrid-active-nav-20261008">(function(){const nav=document.getElementById("mobileQuickNav");if(!nav)return;const links=[...nav.querySelectorAll('a[href^="#"]')];const sections=[...new Set(links.map(a=>a.getAttribute("href")))].map(id=>document.querySelector(id)).filter(Boolean);function update(){let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=145)active=section;}links.forEach(a=>{const on=a.getAttribute("href")==="#"+active.id;a.classList.toggle("is-active",on);if(on)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");});}window.addEventListener("scroll",update,{passive:true});window.addEventListener("hashchange",update);update();})();</script></body></html>
