@@ -413,6 +413,10 @@ let liveStatus={};function render(){
  document.getElementById("top10Results").innerHTML=byResults.map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayer(\''+e.name.replace(/'/g,"\\'")+'\')"><span class="rw-rank">#'+(i+1)+'</span><span class="rw-name">'+e.name+'</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
  const ranked=[...arr].sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.ev-a.ev||a.name.localeCompare(b.name));
  window.displayedEntries=ranked;
+ const previous=window.previousRanks||{};const next={};
+ ranked.forEach((e,i)=>{next[e.name]=i;const card=document.querySelectorAll("#mobileStandings .mobile-player")[i];if(card&&previous[e.name]!==undefined&&previous[e.name]!==i){const rank=card.querySelector(".mp-rank");if(rank){const improved=previous[e.name]>i;rank.textContent+=" "+(improved?"▲":"▼");rank.style.color=improved?"#6ce3a3":"#ffb18d";}}});
+ window.previousRanks=next;
+
  document.getElementById("mobileStandings").innerHTML=ranked.map((e,i)=>'<button type="button" class="mobile-player" onclick="showPlayerByIndex('+i+')" data-player="'+i+'"><div class="mp-top"><div><span class="mp-rank">#'+(i+1)+'</span> <span class="mp-name">'+e.name+'</span></div><span class="tap-note">VIEW PICKS ›</span></div><div class="league-record"><span><small>CORRECT</small><b>'+e.correct+'</b></span><span><small>POSSIBLE</small><b>'+e.possible+'</b></span><span><small>TB</small><b>'+e.tb+'</b></span><span><small>TOP 3</small><b>'+e.any.toFixed(1)+'%</b></span></div><div class="mp-odds"><span><small>1ST</small><b>'+e.p1.toFixed(1)+'%</b></span><span><small>2ND</small>'+e.p2.toFixed(1)+'%</span><span><small>3RD</small>'+e.p3.toFixed(1)+'%</span><span><small>TOP 3</small>'+e.any.toFixed(1)+'%</span></div></button>').join("");
 }
 // Legacy card drilldown removed. Only explicit SEE PICKS links navigate.
