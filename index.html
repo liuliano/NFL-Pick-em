@@ -316,7 +316,44 @@ table{font-size:12px!important}thead th{background:#08130d!important;color:#d0dd
 .wrap .mobile-player{background:#10231a!important;border:0!important;border-bottom:1px solid #355643!important;margin:0!important}
 .wrap .mp-odds span{background:#172f23!important}
 @media(max-width:700px){.wrap .card{padding:13px!important}.wrap .leaders-card .leader-row,.wrap .top10-card .rw-row{padding:12px 3px!important}}
-</style><style id="game-pick-percentages-20261008">.pick-split{margin:13px 0 12px;padding:12px 13px;background:#0b1b13;border:1px solid #31513d;border-radius:2px}.pick-split-head,.pick-split-labels{display:flex;align-items:center;justify-content:space-between;gap:10px}.pick-split-head{color:#9eb7a7;font-size:10px;font-weight:900;letter-spacing:1.2px;margin-bottom:9px}.pick-split-labels{font-size:13px;font-weight:750;color:#edf7ef}.pick-split-labels b{font-size:16px;color:#a4f2c0}.pick-split-labels small{font-size:11px;color:#a6b9ac}.pick-split-track{height:7px;margin-top:9px;background:#53675a;overflow:hidden;border-radius:1px}.pick-split-track span{display:block;height:100%;background:#39b976;border-right:2px solid #e5f9ed}</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
+</style><style id="game-pick-percentages-20261008">.pick-split{margin:13px 0 12px;padding:12px 13px;background:#0b1b13;border:1px solid #31513d;border-radius:2px}.pick-split-head,.pick-split-labels{display:flex;align-items:center;justify-content:space-between;gap:10px}.pick-split-head{color:#9eb7a7;font-size:10px;font-weight:900;letter-spacing:1.2px;margin-bottom:9px}.pick-split-labels{font-size:13px;font-weight:750;color:#edf7ef}.pick-split-labels b{font-size:16px;color:#a4f2c0}.pick-split-labels small{font-size:11px;color:#a6b9ac}.pick-split-track{height:7px;margin-top:9px;background:#53675a;overflow:hidden;border-radius:1px}.pick-split-track span{display:block;height:100%;background:#39b976;border-right:2px solid #e5f9ed}</style><style id="hybrid-broadcast-ui-20261008">
+:root{--broadcast-accent:#54d995;--broadcast-line:#355345}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+.wrap{max-width:1080px}
+.hero{position:relative;overflow:hidden;border-left:4px solid var(--broadcast-accent)!important;background:linear-gradient(112deg,#153e2b 0%,#10271d 55%,#0a1712 100%)!important;padding:20px 19px!important}
+.hero:after{content:"";position:absolute;right:-45px;top:-45px;width:175px;height:175px;border:1px solid #ffffff12;transform:rotate(25deg);pointer-events:none}
+.hero h1{letter-spacing:.7px!important;line-height:1.05!important}
+.league-summary{gap:8px!important}
+.league-summary>.card{padding:13px 12px!important;border-top:2px solid #426f56!important;background:linear-gradient(180deg,#14271e,#101d17)!important}
+.league-summary .big{font-variant-numeric:tabular-nums;letter-spacing:-1px}
+.league-games .league-head,.leaders-card>.row,.top10-card>.row{border-bottom:1px solid var(--broadcast-line);padding-bottom:10px;margin-bottom:10px}
+.league-games h2,.leaders-card h2,.top10-card h2,#standingsSection h2{letter-spacing:.3px}
+#games{gap:9px!important}
+#games .game{border:1px solid #315140!important;border-left:3px solid #416b52!important;border-radius:2px!important;background:linear-gradient(115deg,#12271d,#0d1b15)!important;padding:12px 13px!important;box-shadow:none!important}
+#games .game:has(.match-status.live){border-left-color:#56ed9c!important;background:linear-gradient(115deg,#183e2a,#102219)!important}
+#games .game:has(.match-status.final){border-left-color:#8da59a!important}
+#games .game-top{gap:8px!important}
+#games .game-main>b{font-size:17px!important;letter-spacing:.35px}
+#games .game-main>div[style*="font-size:22px"]{font-size:21px!important;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+#games .stadium{opacity:.72;font-size:11px!important}
+#games .match-status{font-weight:900!important;letter-spacing:1px!important;font-size:10px!important}
+#games .match-status.live{color:#73f5aa!important}
+#games .pick-split{margin:10px 0 9px!important;padding:10px 11px!important;background:#0c1d15!important;border-color:#294e38!important}
+#games .pick-split-head{margin-bottom:6px!important}
+#games .pick-split-labels b{font-variant-numeric:tabular-nums}
+#games .pick-split-track{height:6px!important;margin-top:7px!important}
+#games .main-see-picks{display:block;text-align:center;font-size:12px!important;font-weight:850!important;letter-spacing:1px!important;padding:9px 10px!important;border:1px solid #355c45!important;background:#153624!important;border-radius:2px!important}
+#games .main-see-picks:active{background:#215b3a!important}
+.leader-row,.rw-row{border-radius:2px!important;box-shadow:none!important}
+#mobileQuickNav{backdrop-filter:blur(12px);background:#0b1d16f2!important;border:1px solid #315341!important}
+#mobileQuickNav a{transition:background .15s,color .15s}
+#mobileQuickNav a.is-active{color:#c4ffdc!important;background:#1c5032!important;box-shadow:inset 0 -2px #66e8a1}
+#standingsSection table{font-variant-numeric:tabular-nums}
+#standingsSection th{font-size:11px;letter-spacing:.45px}
+#standingsSection td{border-bottom:1px solid #274235}
+@media(max-width:700px){.wrap{padding-left:10px!important;padding-right:10px!important}.hero{padding:16px 14px!important}.league-summary>.card{padding:11px 10px!important}#games .game{padding:11px!important}#games .game-main>b{font-size:16px!important}#games .pick-split-labels{font-size:12px!important}#games .pick-split-labels b{font-size:14px!important}#mobileQuickNav{gap:3px!important}#mobileQuickNav a{padding:9px 7px!important;font-size:12px!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#mobileQuickNav a{transition:none}}
+</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">52</div><div>Week 5 players</div></div>
@@ -474,4 +511,4 @@ function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");re
 render();refreshNFL();setInterval(refreshNFL,60000);
 
 
-</script></body></html>
+</script><script id="hybrid-active-nav-20261008">(function(){const nav=document.getElementById("mobileQuickNav");if(!nav)return;const links=[...nav.querySelectorAll('a[href^="#"]')];const sections=[...new Set(links.map(a=>a.getAttribute("href")))].map(id=>document.querySelector(id)).filter(Boolean);function update(){let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=145)active=section;}links.forEach(a=>{const on=a.getAttribute("href")==="#"+active.id;a.classList.toggle("is-active",on);if(on)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");});}window.addEventListener("scroll",update,{passive:true});window.addEventListener("hashchange",update);update();})();</script></body></html>
