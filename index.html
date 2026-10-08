@@ -322,7 +322,7 @@ table{font-size:12px!important}thead th{background:#08130d!important;color:#d0dd
 <div class="card"><div class="muted">POOL</div><div class="big">52</div><div>Week 5 players</div></div>
 <div class="card"><div class="muted">GAMES PLAYED</div><div class="big" id="score">0 / 15</div><div id="alive" class="muted">0 games final</div></div>
 <div class="card"><div class="muted">WEEK</div><div class="big">5</div><div>2026 NFL</div></div>
-<div class="card"><div class="muted">GAMES REMAINING</div><div class="big" id="gamesRemaining">15</div><div id="remainingNote">Until all games are final</div></div>
+<div class="card"><div class="muted">GAMES LIVE</div><div class="big" id="gamesLive">0</div><div id="liveNote">Currently in progress</div></div>
 </div>
 <div id="leadersSection" class="card leaders-card" style="display:block!important;visibility:visible!important;opacity:1!important"><div class="row"><h2 style="margin-right:auto">🏆 LEADERBOARD</h2><span class="live-badge">LIVE</span></div><div id="topLeaders"><div class="muted" style="padding:10px 0">Calculating leaders…</div></div></div>
 <div class="card top10-card"><div class="row"><h2 style="margin-right:auto">Top 10 • Right / Wrong</h2><span class="live-badge">LIVE</span></div><div class="muted" style="margin-bottom:8px">Current results across completed games.</div><div id="top10Results"><div class="muted">Calculating…</div></div></div>
@@ -425,8 +425,9 @@ let liveStatus={};function render(){
  let arr=es.map(e=>{let correct=0;for(let i=0;i<games.length;i++)if(results[gameKey(i)]&&e.picks[i]===results[gameKey(i)])correct++;const z=stats[e.name];return {...e,correct,possible:correct+games.length-done,p1:100*z.p1/N,p2:100*z.p2/N,p3:100*z.p3/N,any:100*z.any/N,ev:0}}).sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.any-a.any||a.name.localeCompare(b.name));
  document.getElementById("score").textContent=done+" / "+games.length;
  document.getElementById("alive").textContent=done+" games final";
- document.getElementById("gamesRemaining").textContent=games.length-done;
- document.getElementById("remainingNote").textContent=(games.length-done===0?"All games final":"Games yet to finish");
+ const liveCount=games.filter((g,i)=>liveStatus[i]==="live").length;
+ document.getElementById("gamesLive").textContent=liveCount;
+ document.getElementById("liveNote").textContent=liveCount===1?"Game in progress":"Games in progress";
  document.getElementById("place").textContent=arr.length+" PLAYERS";
  document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+(i+1)+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+e.possible+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
  document.getElementById("topLeaders").innerHTML=arr.slice().sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.ev-a.ev||a.name.localeCompare(b.name)).slice(0,3).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+i+')"><span class="leader-place">'+['🥇','🥈','🥉'][i]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.p1.toFixed(1)+'%</span></button>').join("");
