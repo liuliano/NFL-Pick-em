@@ -559,7 +559,7 @@ function showPlayer(name){
  const st=(window.latestStats||{})[name]||{}, rank=Math.max(1,list.findIndex(x=>x.name===name)+1); let correct=0,done=0;
  e.picks.forEach((p,i)=>{if(results[gameKey(i)]){done++;if(p===results[gameKey(i)])correct++;}});
  const possible=correct+games.length-done, pct=x=>((100*(x||0)/20000).toFixed(1)+"%");
- const picks=e.picks.map((p,i)=>{const final=!!results[gameKey(i)],cls=final?(p===results[gameKey(i)]?"win":"loss"):"",status=final?(p===results[gameKey(i)]?"✓ WIN":"✕ LOSS"):(liveGame[i]||"UPCOMING"),score=liveScore[i]?'<em>'+liveScore[i]+'</em>':"",od=pickOdds(i,p),m=liveML[i],raw=m?(p===games[i][1]?m.home:m.away):null,fav=Number.isFinite(raw)&&raw<0?"FAV":Number.isFinite(raw)?"UND":"",imp=Number.isFinite(raw)?Math.round(100*(raw<0?(-raw)/((-raw)+100):100/(raw+100))):null;return '<div class="dash-pick '+cls+'"><div class="pick-team"><small>GAME '+(i+1)+' · '+games[i][0]+' @ '+games[i][1]+'</small><strong>'+p+'</strong>'+score+'</div><div class="line-box"><b>'+od.line+'</b><small>'+fav+'</small></div><div class="pick-right"><span>'+status+'</span>'+(final?'<b>'+(p===results[gameKey(i)]?"100%":"0%")+'</b><small>FINAL</small>':(imp!==null?'<b>'+imp+'%</b><small>ODDS %</small>':''))+'</div></div>'}).join("");
+ const picks=e.picks.map((p,i)=>{const final=!!results[gameKey(i)],cls=final?(p===results[gameKey(i)]?"win":"loss"):"",status=final?(p===results[gameKey(i)]?"✓ WIN":"✕ LOSS"):(liveGame[i]||"UPCOMING"),score=liveScore[i]?'<em>'+liveScore[i]+'</em>':"",od=pickOdds(i,p),m=liveML[i],raw=m?(p===games[i][1]?m.home:m.away):null,fav=Number.isFinite(raw)&&raw<0?"FAV":Number.isFinite(raw)?"UND":"",imp=liveStatus[i]==="live"&&liveProbSource[i]==="ESPN LIVE"&&Number.isFinite(liveP[i])?Math.round(100*(p===games[i][1]?liveP[i]:1-liveP[i])):Number.isFinite(raw)?Math.round(100*(raw<0?(-raw)/((-raw)+100):100/(raw+100))):null;return '<div class="dash-pick '+cls+'"><div class="pick-team"><small>GAME '+(i+1)+' · '+games[i][0]+' @ '+games[i][1]+'</small><strong>'+p+'</strong>'+score+'</div><div class="line-box"><b>'+od.line+'</b><small>'+fav+'</small></div><div class="pick-right"><span>'+status+'</span>'+(final?'<b>'+(p===results[gameKey(i)]?"100%":"0%")+'</b><small>FINAL</small>':(imp!==null?'<b>'+imp+'%</b><small>ODDS %</small>':''))+'</div></div>'}).join("");
  document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 5 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>TOP 3 CHANCE</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>'+(100*(st.any||0)/20000).toFixed(1)+'%</b><small>TOP 3 CHANCE</small></div></div><div class="dash-section">WEEK 5 PICKS</div><div class="dash-picks">'+picks+'</div>';
  const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");m.scrollTop=0;
 }
@@ -596,9 +596,15 @@ async function refreshLiveWinProbability(eventId,i){
   const response=await fetch("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(eventId)+"&_="+Date.now());
   if(!response.ok)return;
   const detail=await response.json();
-  const rows=detail.winprobability||detail.winProbability||[];
+  let rows=detail.winprobability||detail.winProbability||[];
+  if(!Array.isArray(rows)||!rows.length){
+   try{
+    const core=await fetch("https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/"+encodeURIComponent(eventId)+"/competitions/"+encodeURIComponent(eventId)+"/probabilities?limit=300&_="+Date.now());
+    if(core.ok){const d=await core.json();rows=d.items||[];}
+   }catch(e){}
+  }
   const valid=Array.isArray(rows)?rows.filter(x=>x&&x.homeWinPercentage!=null&&Number.isFinite(Number(x.homeWinPercentage))):[];
-  const latest=valid[valid.length-1];if(!latest)return;
+  const latest=valid.reduce((best,x)=>!best||Number(x.sequenceNumber||0)>Number(best.sequenceNumber||0)?x:best,null);if(!latest)return;
   let p=Number(latest.homeWinPercentage);if(p>1&&p<=100)p/=100;
   if(p<0||p>1)return;
   liveP[i]=p;liveProbSource[i]="ESPN LIVE";
