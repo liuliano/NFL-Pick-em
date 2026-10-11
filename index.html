@@ -552,6 +552,11 @@ function render(){
  const ranked=[...arr].sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.any-a.any||a.name.localeCompare(b.name));
  document.getElementById("top10Results").innerHTML=ranked.slice(0,10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+(i+1)+'</span><span class="rw-name">'+e.name+'</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
  window.displayedEntries=ranked;
+ const openModal=document.getElementById("playerModal");
+ if(openModal?.classList.contains("open")){
+  const openName=window.currentOpenPlayer;
+  if(openName){try{showPlayer(openName)}catch(err){console.error("Refresh player card",err)}}
+ }
  const previous=window.previousRanks||{};const next={};
  ranked.forEach((e,i)=>{next[e.name]=i;const card=document.querySelectorAll("#mobileStandings .mobile-player")[i];if(card&&previous[e.name]!==undefined&&previous[e.name]!==i){const rank=card.querySelector(".mp-rank");if(rank){const improved=previous[e.name]>i;rank.textContent+=" "+(improved?"▲":"▼");rank.style.color=improved?"#6ce3a3":"#ffb18d";}}});
  window.previousRanks=next;
@@ -578,9 +583,10 @@ function showPlayer(name){
  const possible=correct+games.length-done, pct=x=>((100*(x||0)/20000).toFixed(1)+"%");
  const chronological=games.map((g,i)=>i).sort((a,b)=>Date.parse(kickoffET[a])-Date.parse(kickoffET[b])||a-b);const picks=chronological.map(i=>{const p=e.picks[i];const final=!!results[gameKey(i)],cls=final?(p===results[gameKey(i)]?"win":"loss"):"",status=final?(p===results[gameKey(i)]?"✓ WIN":"✕ LOSS"):(liveGame[i]||"UPCOMING"),score=liveScore[i]?'<em>'+liveScore[i]+'</em>':"",od=pickOdds(i,p),m=liveML[i],raw=m?(p===games[i][1]?m.home:m.away):null,fav=Number.isFinite(raw)&&raw<0?"FAV":Number.isFinite(raw)?"UND":"",baseline=Number.isFinite(raw)?Math.round(100*(raw<0?(-raw)/((-raw)+100):100/(raw+100))):null,imp=liveStatus[i]==="live"&&liveProbSource[i]&&Number.isFinite(liveP[i])?Math.round(100*(p===games[i][1]?liveP[i]:1-liveP[i])):baseline,delta=liveStatus[i]==="live"&&baseline!==null&&imp!==null?imp-baseline:null;return '<div class="dash-pick '+cls+'"><div class="pick-team"><small>GAME '+(i+1)+' · '+games[i][0]+' @ '+games[i][1]+'</small><strong>'+p+'</strong>'+score+'</div><div class="line-box"><b>'+od.line+'</b><small>'+fav+'</small></div><div class="pick-right"><span>'+status+'</span>'+(final?'<b>'+(p===results[gameKey(i)]?"100%":"0%")+'</b><small>FINAL</small>':(imp!==null?'<b>'+imp+'%</b><small>ODDS %</small>':''))+'</div><div class="delta-box">'+(delta!==null?'<b class="odds-delta '+(delta>0?'up':delta<0?'down':'flat')+'">'+(delta>0?'▲ +':delta<0?'▼ −':'± ')+Math.abs(delta)+'</b><small>VS PREGAME</small>':'<span class="delta-placeholder">—</span>')+'</div></div>'}).join("");
  document.getElementById("playerDetail").innerHTML='<div class="dash-head"><div><div class="dash-rank">#'+rank+' LIVE RANK</div><div class="player-title">'+e.name+'</div><div class="muted">WEEK 5 PICK’EM DASHBOARD</div></div></div><div class="dash-odds"><div><b>'+pct(st.p1)+'</b><small>1ST PLACE</small></div><div><b>'+pct(st.p2)+'</b><small>2ND PLACE</small></div><div><b>'+pct(st.p3)+'</b><small>3RD PLACE</small></div><div><b>'+pct(st.any)+'</b><small>TOP 3 CHANCE</small></div></div><div class="dash-metrics"><div><b>'+correct+'</b><small>CORRECT</small></div><div><b>'+possible+'</b><small>POSSIBLE</small></div><div><b>'+e.tb+'</b><small>MNF TIEBREAK</small></div><div><b>'+(100*(st.any||0)/20000).toFixed(1)+'%</b><small>TOP 3 CHANCE</small></div></div><div class="dash-section">WEEK 5 PICKS</div><div class="dash-picks">'+picks+'</div>';
+ window.currentOpenPlayer=name;try{sessionStorage.setItem("nflPickemOpenPlayer",name)}catch(e){}
  const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");m.scrollTop=0;
 }
-function closePlayer(){const m=document.getElementById("playerModal");m.classList.remove("open");m.setAttribute("aria-hidden","true")}
+function closePlayer(){window.currentOpenPlayer=null;try{sessionStorage.removeItem("nflPickemOpenPlayer")}catch(e){}const m=document.getElementById("playerModal");m.classList.remove("open");m.setAttribute("aria-hidden","true")}
 function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results[k];localStorage.setItem("nflw5results",JSON.stringify(results));render()}
 // Scoreboard payloads often omit odds. Check ESPN's per-game summary as a secondary source.
 const oddsRefreshAt={};
@@ -658,6 +664,10 @@ function resetGames(){results={};localStorage.removeItem("nflw5results");render(
 function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw5entries",raw);render()}
 function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");render()}
 render();refreshNFL();
+try{
+ const savedPlayer=sessionStorage.getItem("nflPickemOpenPlayer");
+ if(savedPlayer)requestAnimationFrame(()=>{try{showPlayer(savedPlayer)}catch(e){console.error("Restore player card",e)}});
+}catch(e){}
 setInterval(()=>{if(document.visibilityState==="visible")refreshNFL();},60000);
 
 
