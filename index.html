@@ -472,7 +472,27 @@ html.ios-device .player-game-wrap .dash-pick{min-width:0}
 html.ios-device .player-game-teams>div{overflow-wrap:anywhere}
 html.ios-device .rw-row,html.ios-device .mobile-player{touch-action:manipulation}
 @media(max-width:390px){html.ios-device .player-sheet{padding:12px!important}html.ios-device .player-game-wrap .dash-pick{grid-template-columns:minmax(0,1fr) 45px 47px 55px 53px!important}html.ios-device .pick-share b{font-size:12px!important}}
-</style><style id="tie-dual-logos">.tie-logo-pair{display:flex;align-items:center;justify-content:center;gap:4px}.tie-logo-pair .winner-logo{width:45px;height:45px;flex-shrink:0}.tie-logos{min-width:105px}.tie-logos>span{color:#c6d8ce}</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
+</style><style id="tie-dual-logos">.tie-logo-pair{display:flex;align-items:center;justify-content:center;gap:4px}.tie-logo-pair .winner-logo{width:45px;height:45px;flex-shrink:0}.tie-logos{min-width:105px}.tie-logos>span{color:#c6d8ce}</style><style id="ios-safari-refinements-20261011">
+/* iOS Safari only: no changes to Android layout */
+@supports (-webkit-touch-callout: none) {
+ html{scroll-padding-top:calc(75px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+ body{min-width:0}
+ #mobileQuickNav{top:0;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ #mobileQuickNav a{touch-action:manipulation}
+ .player-modal{padding:calc(10px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));align-items:flex-start;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+ .player-sheet{max-height:calc(100dvh - 20px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+ .player-close{position:sticky;top:0;float:right;z-index:4;min-width:44px;min-height:44px;touch-action:manipulation}
+ .dash-pick,.player-game-wrap button,.main-see-picks,.rw-expand-button{touch-action:manipulation}
+ .player-game-teams{min-width:0}
+ input,select,textarea{font-size:max(16px,1em)}
+ @media(max-width:430px){
+  .player-modal{padding-left:max(6px,env(safe-area-inset-left,0px));padding-right:max(6px,env(safe-area-inset-right,0px))}
+  .player-sheet{padding:14px 10px;border-radius:12px}
+  .player-game-teams{gap:8px}
+  #mobileQuickNav a{padding:10px 5px}
+ }
+}
+</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">52</div><div>Week 5 players</div></div>
