@@ -593,24 +593,23 @@ async function refreshGameOdds(eventId,i,force=false){
 async function refreshLiveWinProbability(eventId,i){
  if(liveStatus[i]!=="live")return;
  try{
-  const url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(eventId);
-  const response=await fetch(url);if(!response.ok)return;
+  const response=await fetch("https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(eventId)+"&_="+Date.now());
+  if(!response.ok)return;
   const detail=await response.json();
   const rows=detail.winprobability||detail.winProbability||[];
-  const latest=Array.isArray(rows)?rows.slice().reverse().find(x=>x&&Number.isFinite(Number(x.homeWinPercentage))):null;
-  if(!latest)return;
-  let p=Number(latest.homeWinPercentage);
-  if(p>1&&p<=100)p/=100;
+  const valid=Array.isArray(rows)?rows.filter(x=>x&&x.homeWinPercentage!=null&&Number.isFinite(Number(x.homeWinPercentage))):[];
+  const latest=valid[valid.length-1];if(!latest)return;
+  let p=Number(latest.homeWinPercentage);if(p>1&&p<=100)p/=100;
   if(p<0||p>1)return;
-  liveP[i]=p;
-  liveProbSource[i]="ESPN LIVE";
- }catch(e){/* Keep existing pregame probability when live probability is unavailable. */}
+  liveP[i]=p;liveProbSource[i]="ESPN LIVE";
+ }catch(e){}
 }
 async function refreshNFL(force=false){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=5&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;const oddsJobs=[];liveGame={};liveScore={};liveStatus={};liveSituation={};liveProbSource={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;if(ev.id){oddsJobs.push(refreshGameOdds(ev.id,i,force));if(st.state==="in")oddsJobs.push(refreshLiveWinProbability(ev.id,i));}let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveStatus[i]=st.completed===true?"final":(st.state==="in"?"live":"scheduled");liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;if(liveStatus[i]==="live"){const situation=getLiveSituation(comp,away,home);if(situation)liveSituation[i]=situation;}liveGame[i]=detail;if(st.completed===true){let w=cs.find(x=>x.winner===true);if(!w){let as=Number(away.score),hs=Number(home.score);w=as>hs?away:home}results[gameKey(i)]=norm(w.team.abbreviation)}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(odds?.homeTeamOdds?.moneyLine!=null&&odds?.awayTeamOdds?.moneyLine!=null&&Number.isFinite(hml)&&hml!==0&&Number.isFinite(aml)&&aml!==0)liveML[i]={home:hml,away:aml,provider:odds?.provider?.name||"ESPN odds"};saveLiveOdds();rememberWeek5Favorite(i,liveML[i]);let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null&&Number.isFinite(Number(pred)))liveP[i]=Math.max(0,Math.min(1,Number(pred)/100));else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null&&Number.isFinite(Number(hp)))liveP[i]=Math.max(0,Math.min(1,Number(hp)>1?Number(hp)/100:Number(hp)));else if(liveML[i]){const prob=ml=>ml<0?-ml/(-ml+100):100/(ml+100),homeP=prob(liveML[i].home),awayP=prob(liveML[i].away);if(Number.isFinite(homeP)&&Number.isFinite(awayP)&&homeP+awayP>0)liveP[i]=homeP/(homeP+awayP)}}}});localStorage.setItem("nflw5results",JSON.stringify(results));if(oddsJobs.length)await Promise.allSettled(oddsJobs);saveProjections();render();s.textContent="ESPN refreshed • "+matched+" Week 5 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
 function resetGames(){results={};localStorage.removeItem("nflw5results");render()}
 function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw5entries",raw);render()}
 function restoreEntries(){raw=starter;localStorage.removeItem("nflw5entries");render()}
 render();refreshNFL();
+setInterval(()=>{if(document.visibilityState==="visible")refreshNFL();},60000);
 
 
 </script><script id="hybrid-active-nav-20261008">(function(){const nav=document.getElementById("mobileQuickNav");if(!nav)return;const links=[...nav.querySelectorAll('a[href^="#"]')];const sections=[...new Set(links.map(a=>a.getAttribute("href")))].map(id=>document.querySelector(id)).filter(Boolean);function update(){let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=145)active=section;}links.forEach(a=>{const on=a.getAttribute("href")==="#"+active.id;a.classList.toggle("is-active",on);if(on)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");});}window.addEventListener("scroll",update,{passive:true});window.addEventListener("hashchange",update);update();})();</script></body></html>
