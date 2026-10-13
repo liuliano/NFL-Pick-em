@@ -595,6 +595,13 @@ function getLiveSituation(comp,away,home){
 function escapeGameText(v){return String(v??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
  const kickoffET=["2026-10-08T20:15:00-04:00","2026-10-11T09:30:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T16:05:00-04:00","2026-10-11T13:00:00-04:00","2026-10-11T16:25:00-04:00","2026-10-11T16:25:00-04:00","2026-10-11T20:20:00-04:00","2026-10-12T20:15:00-04:00"];
 const displayOrder=games.map((g,i)=>i).sort((a,b)=>Date.parse(kickoffET[a])-Date.parse(kickoffET[b])||a-b);
+function actualMnfTotal(){
+ const i=14;if(liveStatus[i]!=="final"||!liveScore[i])return null;
+ const m=String(liveScore[i]).match(/\bBUF\s+(\d+)\s*[•·-]\s*LAR\s+(\d+)\b/i);
+ return m?Number(m[1])+Number(m[2]):null;
+}
+function rankTieDistance(e){const total=actualMnfTotal();return Math.abs(Number(e.tb)-(total===null?47.5:total));}
+function compareLeagueRank(a,b){return b.correct-a.correct||b.possible-a.possible||rankTieDistance(a)-rankTieDistance(b)||a.name.localeCompare(b.name);}
 function render(){
  const gamesEl=document.getElementById("games");
  const currentEntries=entries();
@@ -629,7 +636,7 @@ function render(){
    }
  }
  window.latestStats=stats;
- let arr=es.map(e=>{let correct=0;for(let i=0;i<games.length;i++)if(results[gameKey(i)]&&e.picks[i]===results[gameKey(i)])correct++;const z=stats[e.name];return {...e,correct,possible:correct+games.length-done,p1:100*z.p1/N,p2:100*z.p2/N,p3:100*z.p3/N,any:100*z.any/N}}).sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.any-a.any||a.name.localeCompare(b.name));
+ let arr=es.map(e=>{let correct=0;for(let i=0;i<games.length;i++)if(results[gameKey(i)]&&e.picks[i]===results[gameKey(i)])correct++;const z=stats[e.name];return {...e,correct,possible:correct+games.length-done,p1:100*z.p1/N,p2:100*z.p2/N,p3:100*z.p3/N,any:100*z.any/N}}).sort((a,b)=>compareLeagueRank(a,b));
  document.getElementById("score").textContent=done+" / "+games.length;
  document.getElementById("alive").textContent=done+" games final";
  const upsetTeams=games.flatMap((g,i)=>{const winner=results[gameKey(i)],favorite=week5Favorites[gameKey(i)];return winner&&winner!=="TIE"&&favorite&&winner!==favorite?[winner]:[]});
@@ -637,8 +644,8 @@ function render(){
  document.getElementById("upsetNote").textContent=upsetTeams.length?upsetTeams.join(" • ")+" won as underdogs":"Underdog victories • confirmed odds only";
  document.getElementById("place").textContent=arr.length+" PLAYERS";
  document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+(i+1)+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+e.possible+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
- document.getElementById("topLeaders").innerHTML=arr.slice().sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.any-a.any||a.name.localeCompare(b.name)).slice(0,3).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+i+')"><span class="leader-place">'+['🥇','🥈','🥉'][i]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.p1.toFixed(1)+'%</span></button>').join("");
- const ranked=[...arr].sort((a,b)=>b.correct-a.correct||b.possible-a.possible||b.p1-a.p1||b.any-a.any||a.name.localeCompare(b.name));
+ document.getElementById("topLeaders").innerHTML=arr.slice().sort((a,b)=>compareLeagueRank(a,b)).slice(0,3).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+i+')"><span class="leader-place">'+['🥇','🥈','🥉'][i]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.p1.toFixed(1)+'%</span></button>').join("");
+ const ranked=[...arr].sort((a,b)=>compareLeagueRank(a,b));
  document.getElementById("top10Results").innerHTML=ranked.slice(0,window.showAllRightWrong?ranked.length:10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+(i+1)+'</span><span class="rw-name">'+e.name+'</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
  window.displayedEntries=ranked;const rwButton=document.getElementById("toggleAllRightWrong");if(rwButton){rwButton.textContent=window.showAllRightWrong?"Show top 10 ↑":"Show all "+ranked.length+" players ↓";rwButton.setAttribute("aria-expanded",String(!!window.showAllRightWrong));}
  const openModal=document.getElementById("playerModal");
