@@ -509,6 +509,20 @@ html.ios-device .rw-row,html.ios-device .mobile-player{touch-action:manipulation
  .pick-team,.game-main{min-width:0}
  .pick-team strong,.game-main b{overflow-wrap:anywhere}
 }
+</style><style id="mobile-platform-polish-20261013">
+/* Shared iOS Safari and Android Chrome mobile layout refinements */
+@media(max-width:700px){
+html{scroll-padding-top:110px}
+body{overflow-x:clip}
+.player-modal{padding:10px;padding-top:max(10px,env(safe-area-inset-top,0px));padding-bottom:max(10px,env(safe-area-inset-bottom,0px));overscroll-behavior:contain}
+.player-modal.open{align-items:center}
+.player-sheet{box-sizing:border-box;max-width:100%;max-height:calc(100svh - 20px);max-height:calc(100dvh - 20px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.player-close{min-width:44px;min-height:44px;z-index:5}
+#playerDetail,.dash-pick,.game,.game-top{min-width:0}
+#playerDetail{overflow-wrap:break-word}
+button,a,[role="button"]{-webkit-tap-highlight-color:transparent}
+}
+@media(max-width:390px){.player-sheet{padding:12px}.player-title{overflow-wrap:anywhere}}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <div class="nav-header-spacer" aria-hidden="true"></div>
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
