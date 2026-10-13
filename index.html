@@ -492,6 +492,23 @@ html.ios-device .rw-row,html.ios-device .mobile-player{touch-action:manipulation
   #mobileQuickNav a{padding:10px 5px}
  }
 }
+</style><style id="ios-only-layout-20261013">
+/* iOS Safari/WebKit only: Android rendering is unchanged. */
+@supports (-webkit-touch-callout: none) {
+ html{-webkit-text-size-adjust:100%}
+ body{padding-bottom:env(safe-area-inset-bottom,0px)}
+ #mobileQuickNav{padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+ .player-modal{padding:calc(10px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .player-sheet{max-height:calc(100dvh - 20px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+ .player-close{min-width:44px;min-height:44px}
+ .main-see-picks,.rw-expand-button{min-height:44px}
+}
+@supports (-webkit-touch-callout: none) and (max-width:430px) {
+ .player-modal{align-items:flex-start}
+ .player-sheet{width:100%;padding:14px;border-radius:12px}
+ .pick-team,.game-main{min-width:0}
+ .pick-team strong,.game-main b{overflow-wrap:anywhere}
+}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
