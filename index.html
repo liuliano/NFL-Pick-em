@@ -654,9 +654,9 @@ function render(){
  }
  window.latestStats=stats;
  let arr=es.map(e=>{let correct=0;for(let i=0;i<games.length;i++)if(results[gameKey(i)]&&e.picks[i]===results[gameKey(i)])correct++;const z=stats[e.name];return {...e,correct,possible:correct+games.length-done,p1:100*z.p1/N,p2:100*z.p2/N,p3:100*z.p3/N,any:100*z.any/N}}).sort((a,b)=>compareLeagueRank(a,b));
- // Once every game and the MNF tiebreaker are final, probabilities become actual placements.
+ // All results are final: show actual standings probabilities, not simulations.
  // Leave unresolved exact ties shared rather than assigning arbitrary 100% outcomes.
- if(done===games.length && actualMnfTotal()!==null){
+ if(done===games.length){
    arr.forEach((e,i)=>{
      const tiedBefore=arr.slice(0,i).filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e)).length;
      const tiedGroup=arr.filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e));
