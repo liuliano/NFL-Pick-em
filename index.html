@@ -654,6 +654,19 @@ function render(){
  }
  window.latestStats=stats;
  let arr=es.map(e=>{let correct=0;for(let i=0;i<games.length;i++)if(results[gameKey(i)]&&e.picks[i]===results[gameKey(i)])correct++;const z=stats[e.name];return {...e,correct,possible:correct+games.length-done,p1:100*z.p1/N,p2:100*z.p2/N,p3:100*z.p3/N,any:100*z.any/N}}).sort((a,b)=>compareLeagueRank(a,b));
+ // Once every game and the MNF tiebreaker are final, probabilities become actual placements.
+ // Leave unresolved exact ties shared rather than assigning arbitrary 100% outcomes.
+ if(done===games.length && actualMnfTotal()!==null){
+   arr.forEach((e,i)=>{
+     const tiedBefore=arr.slice(0,i).filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e)).length;
+     const tiedGroup=arr.filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e));
+     const start=i-tiedBefore, slots=tiedGroup.map((_,j)=>start+j+1);
+     e.p1=slots.includes(1)?100/tiedGroup.length:0;
+     e.p2=slots.includes(2)?100/tiedGroup.length:0;
+     e.p3=slots.includes(3)?100/tiedGroup.length:0;
+     e.any=100*slots.filter(pos=>pos<=3).length/tiedGroup.length;
+   });
+ }
  document.getElementById("score").textContent=done+" / "+games.length;
  document.getElementById("alive").textContent=done+" games final";
  const upsetTeams=games.flatMap((g,i)=>{const winner=results[gameKey(i)],favorite=week5Favorites[gameKey(i)];return winner&&winner!=="TIE"&&favorite&&winner!==favorite?[winner]:[]});
