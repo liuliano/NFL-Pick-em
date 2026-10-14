@@ -509,7 +509,37 @@ html.ios-device .rw-row,html.ios-device .mobile-player{touch-action:manipulation
  .pick-team,.game-main{min-width:0}
  .pick-team strong,.game-main b{overflow-wrap:anywhere}
 }
-</style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
+</style>
+<style id="player-modal-mobile-scroll-20261014">
+/* Allow the entire player picks dashboard to scroll on touch devices. */
+@media (max-width: 800px) {
+  .player-modal.open {
+    display:block!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-y:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    box-sizing:border-box!important;
+    padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .player-modal .player-sheet {
+    display:block!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:visible!important;
+    margin-bottom:20px!important;
+    touch-action:pan-y!important;
+  }
+  .player-modal .pick-grid,.player-modal .pick-item,.player-modal #playerContent {
+    touch-action:pan-y!important;
+  }
+}
+</style>
+</head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
 <div class="grid league-summary">
 <div class="card"><div class="muted">POOL</div><div class="big">52</div><div>Week 5 players</div></div>
