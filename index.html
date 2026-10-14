@@ -523,6 +523,13 @@ body{overflow-x:clip}
 button,a,[role="button"]{-webkit-tap-highlight-color:transparent}
 }
 @media(max-width:390px){.player-sheet{padding:12px}.player-title{overflow-wrap:anywhere}}
+</style><style id="ios-picks-scroll-fix-20261014">
+/* Only iOS Safari/WebKit: one consistent scroll surface inside the player modal. */
+@supports (-webkit-touch-callout: none) {
+ html.ios-device .player-modal.open{display:flex!important;align-items:flex-start!important;overflow:hidden!important;overscroll-behavior:contain}
+ html.ios-device .player-sheet{display:block!important;flex:0 1 auto;min-height:0;max-height:calc(100dvh - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;overflow-y:scroll!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y}
+ html.ios-device #playerDetail,html.ios-device .dash-picks,html.ios-device .player-game-wrap{touch-action:pan-y}
+}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <div class="nav-header-spacer" aria-hidden="true"></div>
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
@@ -724,6 +731,7 @@ function pickOdds(i,pick){
  return {line:"—",src:"ODDS UNAVAILABLE"};
 }
 function showPlayer(name){
+ const priorModal=document.getElementById("playerModal"),priorSheet=priorModal?.querySelector(".player-sheet"),wasOpen=priorModal?.classList.contains("open")&&window.currentOpenPlayer===name,priorSheetScroll=wasOpen?(priorSheet?.scrollTop||0):0,priorModalScroll=wasOpen?(priorModal?.scrollTop||0):0;
  const list=window.displayedEntries||[], e=list.find(x=>x.name===name)||entries().find(x=>x.name===name); if(!e)return;
  const st=(window.finalPlacementOdds||{})[name]||{}, rank=Math.max(1,list.findIndex(x=>x.name===name)+1); let correct=0,done=0;
  e.picks.forEach((p,i)=>{if(results[gameKey(i)]){done++;if(p===results[gameKey(i)])correct++;}});
@@ -734,7 +742,7 @@ function showPlayer(name){
  if(diff){const badge=document.createElement("span");badge.className="rank-shift "+(diff>0?"up":"down");badge.textContent=(diff>0?"▲ +":"▼ −")+Math.abs(diff)+" spots since last update";document.querySelector("#playerDetail .dash-head")?.appendChild(badge)}
  if(Number.isInteger(window.openPlayerGame)){const selected=document.querySelector('#playerDetail .dash-pick[aria-controls="player-game-detail-'+window.openPlayerGame+'"]');if(selected){const detail=document.getElementById("player-game-detail-"+window.openPlayerGame);if(detail){detail.hidden=false;selected.setAttribute("aria-expanded","true");selected.closest(".player-game-wrap")?.classList.add("expanded")}}}
  window.currentOpenPlayer=name;try{sessionStorage.setItem("nflPickemOpenPlayer",name)}catch(e){}
- const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");m.scrollTop=0;
+ const m=document.getElementById("playerModal");m.classList.add("open");m.setAttribute("aria-hidden","false");if(wasOpen){if(priorSheet)priorSheet.scrollTop=priorSheetScroll;m.scrollTop=priorModalScroll;}else{if(priorSheet)priorSheet.scrollTop=0;m.scrollTop=0;}
 }
 window.showAllRightWrong=false;
 function toggleRightWrong(){
