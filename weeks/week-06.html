@@ -569,7 +569,7 @@ function actualMnfTotal(){
  return m?Number(m[1])+Number(m[2]):null;
 }
 function rankTieDistance(e){const total=actualMnfTotal();return Math.abs(Number(e.tb)-(total===null?47.5:total));}
-function compareLeagueRank(a,b){return b.correct-a.correct||b.possible-a.possible||rankTieDistance(a)-rankTieDistance(b)||a.name.localeCompare(b.name);}
+function compareLeagueRank(a,b){return b.any-a.any||b.p1-a.p1||b.p2-a.p2||b.p3-a.p3||b.correct-a.correct||rankTieDistance(a)-rankTieDistance(b)||a.name.localeCompare(b.name);}
 function render(){
  const gamesEl=document.getElementById("games");
  const currentEntries=entries();
