@@ -537,7 +537,7 @@ let savedResults=JSON.parse(localStorage.getItem("nflw6results")||"{}");
 let results={};
 Object.keys(savedResults).forEach(k=>{if(k.includes("-"))results[k]=savedResults[k];else if(games[+k])results[gameKey(+k)]=savedResults[k]});
 localStorage.setItem("nflw6results",JSON.stringify(results));
-let liveP={},liveML={},liveGame={},liveScore={};
+let liveP={},liveML={},liveGame={},liveScore={},liveTotals={};
 try{const saved=JSON.parse(localStorage.getItem("nflw6liveodds")||"{}");if(saved&&typeof saved==="object")for(const [k,v] of Object.entries(saved)){const i=Number(k);if(Number.isInteger(i)&&i>=0&&i<games.length&&Number.isFinite(v?.home)&&Number.isFinite(v?.away)&&v.home!==0&&v.away!==0)liveML[i]=v;}}catch(e){}
 function saveLiveOdds(){try{localStorage.setItem("nflw6liveodds",JSON.stringify(liveML));}catch(e){}}
 
@@ -579,7 +579,7 @@ function render(){
 
 
  displayOrder.forEach((i,position)=>{const el=gamesEl.querySelector('.game[data-game-index="'+i+'"]');if(el)el.style.order=String(position)});
- const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=20000, stats={};
+ const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=100000, stats={};
  es.forEach(e=>stats[e.name]={p1:0,p2:0,p3:0,any:0});
  // Stable simulation: identical picks, results and projections produce identical rankings.
  const simulationKey=JSON.stringify({picks:es.map(e=>[e.name,e.picks,e.tb]),results:games.map((g,i)=>results[gameKey(i)]||""),probabilities:games.map((g,i)=>Number.isFinite(liveP[i])?liveP[i]:.5)});
@@ -588,7 +588,10 @@ function render(){
  const normal=(mu,sd)=>{let u=1-random(),v=1-random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
  for(let n=0;n<N;n++){
    const winners=games.map((g,i)=>results[gameKey(i)]||((random()<(Number.isFinite(liveP[i])?liveP[i]:.5))?g[1]:g[0]));
-   const total=Math.max(0,Math.round(normal(47.5,10.5)));
+   const knownTotal=actualMnfTotal();
+   const mondayLine=Number(liveTotals[13]);
+   const projectedTotal=Number.isFinite(mondayLine)&&mondayLine>0?mondayLine:47.5;
+   const total=knownTotal!==null?knownTotal:Math.max(0,Math.round(normal(projectedTotal,10.5)));
    const rows=es.map(e=>({e,s:e.picks.reduce((a,p,i)=>a+(p===winners[i]?1:0),0),d:Math.abs(e.tb-total)})).sort((a,b)=>b.s-a.s||a.d-b.d);
    let pos=1,j=0;
    while(j<rows.length&&pos<=3){
@@ -703,10 +706,11 @@ async function refreshGameOdds(eventId,i,force=false){
   const detail=await response.json();
   const candidates=[...(detail.pickcenter||[]),...(detail.header?.competitions?.[0]?.odds||[]),...(detail.header?.competitions?.[0]?.predictor?[detail.header.competitions[0].predictor]:[])];
   for(const item of candidates){
+   if(Number.isFinite(Number(item?.overUnder))&&Number(item.overUnder)>0)liveTotals[i]=Number(item.overUnder);
    const h=Number(item?.homeTeamOdds?.moneyLine),a=Number(item?.awayTeamOdds?.moneyLine);
    if(item?.homeTeamOdds?.moneyLine!=null&&item?.awayTeamOdds?.moneyLine!=null&&Number.isFinite(h)&&Number.isFinite(a)&&h!==0&&a!==0){
     liveML[i]={home:h,away:a,provider:item.provider?.name||"ESPN"};saveLiveOdds();rememberWeek5Favorite(i,liveML[i]);
-    if(!Number.isFinite(liveP[i])){const implied=x=>x<0?-x/(100-x):100/(100+x);liveP[i]=implied(h)/(implied(h)+implied(a));}
+    {const implied=x=>x<0?-x/(100-x):100/(100+x);liveP[i]=implied(h)/(implied(h)+implied(a));saveProjections();}
     render();return;
    }
   }
@@ -753,7 +757,7 @@ function estimatedLiveProbability(i,comp,away,home){
  const logit=Math.log(prior/(1-prior))*fraction+(hs-as)/(2.5+8*Math.sqrt(fraction));
  return Math.max(.001,Math.min(.999,1/(1+Math.exp(-logit))));
 }
-async function refreshNFL(force=false){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=6&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;const oddsJobs=[],liveEstimates={};liveGame={};liveScore={};liveStatus={};liveSituation={};liveProbSource={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;if(ev.id){oddsJobs.push(refreshGameOdds(ev.id,i,force));if(st.state==="in")oddsJobs.push(refreshLiveWinProbability(ev.id,i));}let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveStatus[i]=st.completed===true?"final":(st.state==="in"?"live":"scheduled");liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;if(liveStatus[i]==="live"){const situation=getLiveSituation(comp,away,home);if(situation)liveSituation[i]=situation;liveEstimates[i]={comp,away,home};}liveGame[i]=detail;if(st.completed===true){const awayScore=Number(away.score),homeScore=Number(home.score);if(Number.isFinite(awayScore)&&Number.isFinite(homeScore)&&awayScore===homeScore){results[gameKey(i)]="TIE"}else{let w=cs.find(x=>x.winner===true);if(!w)w=awayScore>homeScore?away:home;results[gameKey(i)]=norm(w.team.abbreviation)}}else{let odds=comp?.odds?.[0],hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(odds?.homeTeamOdds?.moneyLine!=null&&odds?.awayTeamOdds?.moneyLine!=null&&Number.isFinite(hml)&&hml!==0&&Number.isFinite(aml)&&aml!==0)liveML[i]={home:hml,away:aml,provider:odds?.provider?.name||"ESPN odds"};saveLiveOdds();rememberWeek5Favorite(i,liveML[i]);let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null&&Number.isFinite(Number(pred)))liveP[i]=Math.max(0,Math.min(1,Number(pred)/100));else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null&&Number.isFinite(Number(hp)))liveP[i]=Math.max(0,Math.min(1,Number(hp)>1?Number(hp)/100:Number(hp)));else if(liveML[i]){const prob=ml=>ml<0?-ml/(-ml+100):100/(ml+100),homeP=prob(liveML[i].home),awayP=prob(liveML[i].away);if(Number.isFinite(homeP)&&Number.isFinite(awayP)&&homeP+awayP>0)liveP[i]=homeP/(homeP+awayP)}}}});localStorage.setItem("nflw6results",JSON.stringify(results));if(oddsJobs.length)await Promise.allSettled(oddsJobs);
+async function refreshNFL(force=false){const s=document.getElementById("apiStatus");s.textContent="Refreshing ESPN NFL scores…";try{const u="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=6&seasontype=2&limit=100&_="+Date.now();const d=await fetch(u).then(r=>{if(!r.ok)throw Error("ESPN "+r.status);return r.json()});let matched=0;const oddsJobs=[],liveEstimates={};liveGame={};liveScore={};liveStatus={};liveSituation={};liveProbSource={};(d.events||[]).forEach(ev=>{const comp=ev.competitions?.[0],cs=comp?.competitors||[],st=(comp?.status||ev.status||{}).type||{};if(cs.length<2)return;const away=cs.find(x=>x.homeAway==="away"),home=cs.find(x=>x.homeAway==="home");const norm=t=>({JAX:"JAC",WSH:"WAS"}[t]||t);const aa=norm(away?.team?.abbreviation),ha=norm(home?.team?.abbreviation);const i=games.findIndex(g=>g[0]===aa&&g[1]===ha);if(i<0)return;matched++;if(ev.id){oddsJobs.push(refreshGameOdds(ev.id,i,force));if(st.state==="in")oddsJobs.push(refreshLiveWinProbability(ev.id,i));}let as=away?.score??"-",hs=home?.score??"-";let detail=st.shortDetail||st.detail||st.description||"Scheduled";liveStatus[i]=st.completed===true?"final":(st.state==="in"?"live":"scheduled");liveScore[i]=aa+" "+as+"  •  "+ha+" "+hs;if(liveStatus[i]==="live"){const situation=getLiveSituation(comp,away,home);if(situation)liveSituation[i]=situation;liveEstimates[i]={comp,away,home};}liveGame[i]=detail;if(st.completed===true){const awayScore=Number(away.score),homeScore=Number(home.score);if(Number.isFinite(awayScore)&&Number.isFinite(homeScore)&&awayScore===homeScore){results[gameKey(i)]="TIE"}else{let w=cs.find(x=>x.winner===true);if(!w)w=awayScore>homeScore?away:home;results[gameKey(i)]=norm(w.team.abbreviation)}}else{let odds=comp?.odds?.[0];if(Number.isFinite(Number(odds?.overUnder))&&Number(odds.overUnder)>0)liveTotals[i]=Number(odds.overUnder);let hml=Number(odds?.homeTeamOdds?.moneyLine),aml=Number(odds?.awayTeamOdds?.moneyLine);if(odds?.homeTeamOdds?.moneyLine!=null&&odds?.awayTeamOdds?.moneyLine!=null&&Number.isFinite(hml)&&hml!==0&&Number.isFinite(aml)&&aml!==0)liveML[i]={home:hml,away:aml,provider:odds?.provider?.name||"ESPN odds"};saveLiveOdds();rememberWeek5Favorite(i,liveML[i]);let pred=comp?.predictor?.homeTeam?.gameProjection;if(pred!=null&&Number.isFinite(Number(pred)))liveP[i]=Math.max(0,Math.min(1,Number(pred)/100));else{let hp=odds?.homeTeamOdds?.winPercentage;if(hp!=null&&Number.isFinite(Number(hp)))liveP[i]=Math.max(0,Math.min(1,Number(hp)>1?Number(hp)/100:Number(hp)));else if(liveML[i]){const prob=ml=>ml<0?-ml/(-ml+100):100/(ml+100),homeP=prob(liveML[i].home),awayP=prob(liveML[i].away);if(Number.isFinite(homeP)&&Number.isFinite(awayP)&&homeP+awayP>0)liveP[i]=homeP/(homeP+awayP)}}}});localStorage.setItem("nflw6results",JSON.stringify(results));if(oddsJobs.length)await Promise.allSettled(oddsJobs);
  for(const [key,data] of Object.entries(liveEstimates)){
   const i=Number(key);
   if(liveProbSource[i]==="ESPN LIVE")continue;
