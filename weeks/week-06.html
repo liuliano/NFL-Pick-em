@@ -699,13 +699,13 @@ const oddsRefreshAt={};
 try{const saved=JSON.parse(localStorage.getItem("nflw6projections")||"{}");for(const [k,v] of Object.entries(saved)){if(Number.isFinite(v)&&v>=0&&v<=1)liveP[k]=v;}}catch(e){}
 function saveProjections(){try{localStorage.setItem("nflw6projections",JSON.stringify(liveP));}catch(e){}}
 async function refreshGameOdds(eventId,i,force=false){
- if(liveStatus[i]==="final"||(!force&&Date.now()-(oddsRefreshAt[i]||0)<600000))return;
+ if(liveStatus[i]==="final"||(!force&&Date.now()-(oddsRefreshAt[i]||0)<(liveStatus[i]==="live"?60000:600000)))return;
  oddsRefreshAt[i]=Date.now();
  try{
-  const url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(eventId);
+  const url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event="+encodeURIComponent(eventId)+"&_="+Date.now();
   const response=await fetch(url);if(!response.ok)return;
   const detail=await response.json();
-  const candidates=[...(detail.pickcenter||[]),...(detail.header?.competitions?.[0]?.odds||[]),...(detail.header?.competitions?.[0]?.predictor?[detail.header.competitions[0].predictor]:[])];
+  const candidates=[...(detail.pickcenter||[]),...(detail.header?.competitions?.[0]?.odds||[])];
   for(const item of candidates){
    if(Number.isFinite(Number(item?.overUnder))&&Number(item.overUnder)>0)liveTotals[i]=Number(item.overUnder);
    const h=Number(item?.homeTeamOdds?.moneyLine),a=Number(item?.awayTeamOdds?.moneyLine);
