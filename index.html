@@ -567,6 +567,31 @@ button,a,[role="button"]{-webkit-tap-highlight-color:transparent}
  html body #playerModal .player-sheet *{touch-action:pan-y!important}
  html body #playerModal .player-close,html body #playerModal button{touch-action:manipulation!important}
 }
+</style><style id="ios-player-game-fit-20261025">
+/* iPhone only: single-column full-width picks; Android layout untouched. */
+@media(max-width:700px){
+ html.ios-device .player-game-wrap .dash-pick{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 53px 59px 57px 52px!important;
+  width:100%!important;min-width:0!important;box-sizing:border-box!important;
+  gap:0!important;padding:9px 5px!important;min-height:90px!important;
+ }
+ html.ios-device .player-game-wrap .dash-pick>*{min-width:0!important;max-width:100%;box-sizing:border-box}
+ html.ios-device .player-game-wrap .pick-team{overflow:hidden;overflow-wrap:normal!important}
+ html.ios-device .player-game-wrap .pick-team strong{font-size:14px!important;white-space:nowrap}
+ html.ios-device .player-game-wrap .pick-team small,
+ html.ios-device .player-game-wrap .pick-team em{font-size:9px!important;white-space:normal;overflow-wrap:break-word}
+ html.ios-device .player-game-wrap .line-box{padding:2px!important}
+ html.ios-device .player-game-wrap .line-box b,
+ html.ios-device .player-game-wrap .pick-right b{font-size:15px!important}
+ html.ios-device .player-game-wrap .pick-right{min-width:0!important;text-align:center}
+ html.ios-device .player-game-wrap .pick-share{padding:0 1px!important}
+ html.ios-device .player-game-wrap .pick-share b{font-size:12px!important}
+ html.ios-device .player-game-wrap .odds-delta{font-size:10px!important;white-space:nowrap}
+ html.ios-device .player-game-wrap .dash-pick .pick-right span{font-size:8px!important}
+ html.ios-device .player-sheet{min-width:0!important;overflow-x:hidden!important}
+ html.ios-device .dash-picks{grid-template-columns:minmax(0,1fr)!important}
+}
 </style></head><body><section id="leagueModule"><div class="lm-wrap"><div id="lmList"><div class="lm-hero"><a class="lm-back" href="?">‹ MAIN DASHBOARD</a><small style="display:block;margin-top:12px">WEEK 5 • 2026</small><h1>NFL PICK'EM LEAGUE</h1><div>Tap SEE PICKS for a separate matchup view.</div></div><div id="lmStatus" class="lm-status">Loading ESPN scores…</div><div id="lmGames"></div></div><div id="lmPicks" class="lm-picks"></div></div></section><div class="wrap">
 <div class="nav-header-spacer" aria-hidden="true"></div>
 <nav id="mobileQuickNav" aria-label="Quick navigation"><a href="#scoreboardSection">Scores</a><a href="#standingsSection">Standings</a><a href="#leadersSection">Top 3</a><a href="#scoreboardSection">Picks</a></nav><div class="hero"><div style="font-weight:900;letter-spacing:2px;color:#fff">NFL</div><h1>PICK’EM LIVE</h1><div style="color:#dcecff">WEEK 5 • 2026 • STRAIGHT-UP</div></div>
