@@ -812,4 +812,28 @@ setInterval(()=>{if(document.visibilityState==="visible")refreshNFL();},60000);
  }
  html.ios-device .player-game-wrap .pick-share b {font-size:12px!important}
 }
+</style><style id="iphone-safari-single-column-cards-20261025">
+/* Target the actual parent grid: Safari was laying game cards out two abreast. */
+@media screen and (max-width: 600px) {
+ html.ios-device .player-sheet .dash-picks {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:9px!important;
+  width:100%!important;
+  min-width:0!important;
+ }
+ html.ios-device .player-sheet .player-game-wrap {
+  grid-column:1 / -1!important;
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+ }
+ html.ios-device .player-sheet .player-game-wrap .dash-pick {
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+ }
+ html.ios-device .player-sheet {min-width:0!important;max-width:100%!important}
+}
 </style></body></html>
