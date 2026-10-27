@@ -555,8 +555,7 @@ function rememberWeek5Favorite(i,odds){
 }
 
 const week7OfficialPicks="";
-let raw=week7OfficialPicks;
-localStorage.setItem("nflw8entries",week7OfficialPicks);
+let raw=localStorage.getItem("nflw8entries")||"";
 function entries(){return raw.split(/\n+/).map(x=>x.trim()).filter(Boolean).map(line=>{let [name,p,tb]=line.split("|");return{name,picks:(p||"").split(",").map(x=>x.trim().toUpperCase()),tb:+tb||0}}).filter(x=>x.picks.length===games.length)}
 function openStandalonePicks(i){alert("Week 8 player picks are pending Thursday upload.");}
 let liveStatus={},liveSituation={},liveProbSource={};
