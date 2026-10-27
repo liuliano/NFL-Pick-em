@@ -21,7 +21,9 @@ python3 scripts/weekly_update.py check --week 9
 
 The rollover reads the ESPN scoreboard schedule, creates the next week page and JSON, changes the homepage redirect, updates the current week, clears old selections, and generates the week dropdown. It refuses to overwrite an existing week. **Review the generated page and test Android/iPhone Safari before merging to main.**
 
-## Thursday
+## Thursday — manual handoff
+
+The user manually supplies the weekly picks sheet in ChatGPT on Thursday. The scheduled Thursday task is a reminder only: it must not auto-import or invent picks. Once the sheet is received, validate and upload it as an explicit, user-initiated action. The app displays **Picks Pending** until then.
 
 Use a CSV with columns `name,game_01,...,game_14,tiebreaker` (the number of game columns must equal that week's schedule length). Game picks are team abbreviations, in the same chronological order as `data/weeks/week-XX.json`. Example: `CAR` or `GB` for game 1 in Week 8. All players must have exactly one valid selection for every game and a numeric Monday tiebreaker.
 
@@ -39,7 +41,7 @@ The importer rejects invalid picks, missing tiebreakers, and duplicate names. It
 3. Do not change Android/iPhone layout CSS during a routine rollover.
 4. Verify current/final dropdown labels, all game cards, ESPN Refresh, player counts, and picks/leaderboard before publishing.
 5. Commit to this development branch first. Merge only after device testing.
-6. The existing Tuesday/Thursday scheduled ChatGPT tasks must be updated to use these scripts **after** this workflow is validated and merged.
+6. The Tuesday scheduled task can use the new rollover only after validation and merge. Thursday remains a reminder; upload picks only after the user supplies them.
 
 ## Known limitations before production rollout
 
