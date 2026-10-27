@@ -1,0 +1,19 @@
+name: Weekly Pickem Workflow Test
+on:
+  push:
+    branches: [dev/weekly-automation]
+  workflow_dispatch:
+jobs:
+  offline-week8-integration:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile workflow script and test
+        run: python -m py_compile scripts/weekly_update.py tests/test_weekly_workflow.py
+      - name: Run Week 8 rollover and picks tests
+        run: python tests/test_weekly_workflow.py
