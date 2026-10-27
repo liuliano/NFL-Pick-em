@@ -119,7 +119,14 @@ if(n===week)a.setAttribute('aria-current','page');menu.appendChild(a);}
     cfg["status"] = "picks-pending"
     write_config(cfg)
     print("Created %s with %s ESPN games; picks pending" % (target.relative_to(ROOT),len(rows)))
-    print("Review the generated week, then update the homepage redirect in index.html.")
+    home = ROOT / "index.html"
+    entry = home.read_text(encoding="utf-8")
+    entry, changed = re.subn(r'(location\.replace\("weeks/week-)\d{2}(\.html")',
+                             lambda m: m.group(1) + ("%02d" % week) + m.group(2), entry, count=1)
+    if changed != 1:
+        raise ValueError("Homepage redirect not found; inspect index.html before publishing")
+    home.write_text(entry, encoding="utf-8")
+    print("Updated homepage redirect to Week %s" % week)
 def picks(week, filename):
     cfg = read_config()
     data = json.loads((ROOT / ("data/weeks/week-%02d.json" % week)).read_text(encoding="utf-8"))
@@ -144,7 +151,7 @@ def picks(week, filename):
                       "\n".join(",".join([name]+values+[str(tb)]) for name,values,tb in rows)+"\n",encoding="utf-8")
     page = ROOT / ("weeks/week-%02d.html" % week)
     html = page.read_text(encoding="utf-8")
-    payload = "\\n".join(name+"|"+",".join(values)+"|"+str(tb) for name,values,tb in rows)
+    payload = "\n".join(name+"|"+",".join(values)+"|"+str(tb) for name,values,tb in rows)
     html, count = re.subn(r'const week7OfficialPicks="[^"]*";',
                            lambda _: "const week7OfficialPicks="+json.dumps(payload)+";", html, count=1)
     if count != 1:
