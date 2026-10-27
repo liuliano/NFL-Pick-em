@@ -1,0 +1,11 @@
+{
+  "season": 2026,
+  "currentWeek": 8,
+  "template": "weeks/week-08.html",
+  "weekPath": "weeks/week-{week}.html",
+  "espnScoreboard": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+  "picksPath": "data/picks/week-{week}.csv",
+  "dataPath": "data/weeks/week-{week}.json",
+  "timezone": "America/New_York",
+  "status": "picks-pending"
+}
