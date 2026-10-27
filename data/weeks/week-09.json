@@ -1,0 +1,128 @@
+{
+  "season": 2026,
+  "week": 9,
+  "status": "picks-pending",
+  "simulation": true,
+  "games": [
+    {
+      "away": "JAC",
+      "home": "BAL",
+      "kickoff": "2026-11-05T20:15:00-05:00",
+      "stadium": "M&T Bank Stadium",
+      "broadcast": "Prime Video",
+      "espnId": null
+    },
+    {
+      "away": "CIN",
+      "home": "ATL",
+      "kickoff": "2026-11-08T09:30:00-05:00",
+      "stadium": "Santiago Bernabéu",
+      "broadcast": "NFL Network",
+      "espnId": null
+    },
+    {
+      "away": "CLE",
+      "home": "NO",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Caesars Superdome",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "DAL",
+      "home": "IND",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Lucas Oil Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "DEN",
+      "home": "CAR",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Bank of America Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "DET",
+      "home": "MIA",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Hard Rock Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "LAR",
+      "home": "WAS",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Northwest Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "NYG",
+      "home": "PHI",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "Lincoln Financial Field",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "NYJ",
+      "home": "KC",
+      "kickoff": "2026-11-08T13:00:00-05:00",
+      "stadium": "GEHA Field at Arrowhead Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "HOU",
+      "home": "LAC",
+      "kickoff": "2026-11-08T16:05:00-05:00",
+      "stadium": "SoFi Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "LV",
+      "home": "SF",
+      "kickoff": "2026-11-08T16:05:00-05:00",
+      "stadium": "Levi's Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "ARI",
+      "home": "SEA",
+      "kickoff": "2026-11-08T16:25:00-05:00",
+      "stadium": "Lumen Field",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "GB",
+      "home": "NE",
+      "kickoff": "2026-11-08T16:25:00-05:00",
+      "stadium": "Gillette Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "TB",
+      "home": "CHI",
+      "kickoff": "2026-11-08T20:20:00-05:00",
+      "stadium": "Soldier Field",
+      "broadcast": "NBC",
+      "espnId": null
+    },
+    {
+      "away": "BUF",
+      "home": "MIN",
+      "kickoff": "2026-11-09T20:15:00-05:00",
+      "stadium": "U.S. Bank Stadium",
+      "broadcast": "ESPN",
+      "espnId": null
+    }
+  ]
+}
