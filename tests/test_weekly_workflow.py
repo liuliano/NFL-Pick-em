@@ -18,10 +18,11 @@ with tempfile.TemporaryDirectory() as temp:
     for folder in ("config","weeks","data/weeks","data/picks"):
         (root/folder).mkdir(parents=True,exist_ok=True)
     shutil.copy2(ROOT/"config/season.json",root/"config/season.json")
-    shutil.copy2(ROOT/"weeks/week-08.html",root/"weeks/week-08.html")
+    shutil.copy2(ROOT/"weeks/week-08.html",root/"weeks/week-07.html")
     shutil.copy2(ROOT/"index.html",root/"index.html")
     cfg=json.loads((root/"config/season.json").read_text())
     cfg["currentWeek"]=7
+    cfg["template"]="weeks/week-07.html"
     (root/"config/season.json").write_text(json.dumps(cfg))
     # Simulate Tuesday with the provided Week 8 matchups; no network needed.
     weekly.ROOT=root
