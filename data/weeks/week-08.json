@@ -1,0 +1,119 @@
+{
+  "season": 2026,
+  "week": 8,
+  "status": "picks-pending",
+  "games": [
+    {
+      "away": "CAR",
+      "home": "GB",
+      "kickoff": "2026-10-29T20:15:00-04:00",
+      "stadium": "Lambeau Field",
+      "broadcast": "Prime Video",
+      "espnId": null
+    },
+    {
+      "away": "BAL",
+      "home": "BUF",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "Highmark Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "TEN",
+      "home": "CIN",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "Paycor Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "ARI",
+      "home": "DAL",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "AT&T Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "MIN",
+      "home": "DET",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "Ford Field",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "LV",
+      "home": "NYJ",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "MetLife Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "CLE",
+      "home": "PIT",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "Acrisure Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "ATL",
+      "home": "TB",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "Raymond James Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "IND",
+      "home": "JAC",
+      "kickoff": "2026-11-01T13:00:00-05:00",
+      "stadium": "EverBank Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "LAC",
+      "home": "LAR",
+      "kickoff": "2026-11-01T16:05:00-05:00",
+      "stadium": "SoFi Stadium",
+      "broadcast": "FOX",
+      "espnId": null
+    },
+    {
+      "away": "KC",
+      "home": "DEN",
+      "kickoff": "2026-11-01T16:25:00-05:00",
+      "stadium": "Empower Field at Mile High",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "NE",
+      "home": "MIA",
+      "kickoff": "2026-11-01T16:25:00-05:00",
+      "stadium": "Hard Rock Stadium",
+      "broadcast": "CBS",
+      "espnId": null
+    },
+    {
+      "away": "PHI",
+      "home": "WAS",
+      "kickoff": "2026-11-01T20:20:00-05:00",
+      "stadium": "Northwest Stadium",
+      "broadcast": "NBC",
+      "espnId": null
+    },
+    {
+      "away": "CHI",
+      "home": "SEA",
+      "kickoff": "2026-11-02T20:15:00-05:00",
+      "stadium": "Lumen Field",
+      "broadcast": "ESPN",
+      "espnId": null
+    }
+  ]
+}
