@@ -1,0 +1,11 @@
+{
+  "name": "grocery-price-poc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scrape": "node scraper.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.54.1"
+  }
+}
