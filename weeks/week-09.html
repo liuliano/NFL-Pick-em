@@ -634,15 +634,14 @@ function render(){
  // Leave unresolved exact ties shared rather than assigning arbitrary 100% outcomes.
  if(done===games.length){
    arr.forEach((e,i)=>{
-     const tiedBefore=arr.slice(0,i).filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e)).length;
-     const tiedGroup=arr.filter(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e));
-     const start=i-tiedBefore, slots=tiedGroup.map((_,j)=>start+j+1);
-     e.p1=slots.includes(1)?100/tiedGroup.length:0;
-     e.p2=slots.includes(2)?100/tiedGroup.length:0;
-     e.p3=slots.includes(3)?100/tiedGroup.length:0;
-     e.any=100*slots.filter(pos=>pos<=3).length/tiedGroup.length;
+     const place=arr.findIndex(x=>x.correct===e.correct&&rankTieDistance(x)===rankTieDistance(e))+1;
+     e.finalPlace=place;
+     e.p1=place===1?100:0;
+     e.p2=place===2?100:0;
+     e.p3=place===3?100:0;
+     e.any=place<=3?100:0;
    });
- }
+ }else{arr.forEach((e,i)=>{e.finalPlace=i+1;});}
  // Player details must use the same resolved values as the leaderboard.
  window.finalPlacementOdds=Object.fromEntries(arr.map(e=>[e.name,{p1:e.p1,p2:e.p2,p3:e.p3,any:e.any}]));
  document.getElementById("score").textContent=done+" / "+games.length;
@@ -651,7 +650,7 @@ function render(){
  document.getElementById("upsetCount").textContent=upsetTeams.length;
  document.getElementById("upsetNote").textContent=upsetTeams.length?upsetTeams.join(" • ")+" won as underdogs":"Underdog victories • confirmed odds only";
  document.getElementById("place").textContent=arr.length+" PLAYERS";
- document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+(i+1)+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+e.possible+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
+ document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+e.finalPlace+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+e.possible+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
  document.getElementById("topLeaders").innerHTML=arr.slice(0,3).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+i+')"><span class="leader-place">'+['🥇','🥈','🥉'][i]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="leader-movement" data-leader-name="'+encodeURIComponent(e.name)+'"></span></button>').join("");
  const ranked=[...arr].sort((a,b)=>compareLeagueRank(a,b));
  document.getElementById("top10Results").innerHTML=ranked.slice(0,window.showAllRightWrong?ranked.length:10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+(i+1)+'</span><span class="rw-name">'+e.name+'</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
