@@ -575,12 +575,26 @@ function escapeGameText(v){return String(v??"").replace(/[&<>"']/g,ch=>({"&":"&a
  const kickoffET=["2026-10-29T20:15:00-04:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T13:00:00-05:00","2026-11-01T16:05:00-05:00","2026-11-01T16:25:00-05:00","2026-11-01T16:25:00-05:00","2026-11-01T20:20:00-05:00","2026-11-02T20:15:00-05:00"];
 const displayOrder=games.map((g,i)=>i).sort((a,b)=>Date.parse(kickoffET[a])-Date.parse(kickoffET[b])||a-b);
 function actualMnfTotal(){
- const i=13;if(liveStatus[i]!=="final"||!liveScore[i])return null;
- const m=String(liveScore[i]).match(/\bCHI\\s+(\\d+)\s*[•·-]\s*SF\s+(\d+)\b/i);
- return m?Number(m[1])+Number(m[2]):null;
+ const i=13;
+ if(liveStatus[i]!=="final"||!liveScore[i])return null;
+ const parts=String(liveScore[i]).split(/\s*[•·]\s*/);
+ if(parts.length!==2)return null;
+ const away=parts[0].match(/([A-Z]{2,3})\s+(\d+)\s*$/i);
+ const home=parts[1].match(/([A-Z]{2,3})\s+(\d+)\s*$/i);
+ if(!away||!home||away[1]!==games[i][0]||home[1]!==games[i][1])return null;
+ return Number(away[2])+Number(home[2]);
 }
-function rankTieDistance(e){const total=actualMnfTotal();return Math.abs(Number(e.tb)-(total===null?47.5:total));}
-function compareLeagueRank(a,b){return b.correct-a.correct||b.possible-a.possible||b.any-a.any||b.p1-a.p1||b.p2-a.p2||b.p3-a.p3||rankTieDistance(a)-rankTieDistance(b)||a.name.localeCompare(b.name);}
+function rankTieDistance(e){
+ const total=actualMnfTotal();
+ return total===null?Infinity:Math.abs(Number(e.tb)-total);
+}
+function compareLeagueRank(a,b){
+ const score=b.correct-a.correct||b.possible-a.possible;
+ if(score)return score;
+ const total=actualMnfTotal();
+ if(total!==null)return rankTieDistance(a)-rankTieDistance(b)||a.name.localeCompare(b.name);
+ return b.any-a.any||b.p1-a.p1||b.p2-a.p2||b.p3-a.p3||a.name.localeCompare(b.name);
+}
 function render(){
  const gamesEl=document.getElementById("games");
  const currentEntries=entries();
