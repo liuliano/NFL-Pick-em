@@ -637,7 +637,7 @@ function render(){
  // All results are final: show actual standings probabilities, not simulations.
  // Leave unresolved exact ties shared rather than assigning arbitrary 100% outcomes.
  if(done===games.length){
- const total=actualMnfTotal()??51;
+ const total=51; // Week 8 final MNF: Chicago 34, Seattle 17; historical result locked.
  arr.sort((a,b)=>b.correct-a.correct||(total===null?0:Math.abs(a.tb-total)-Math.abs(b.tb-total))||a.name.localeCompare(b.name));
  arr.forEach(e=>{e.finalPlace=1+arr.findIndex(x=>x.correct===e.correct&&(total===null||Math.abs(x.tb-total)===Math.abs(e.tb-total)));e.p1=e.finalPlace===1?100:0;e.p2=e.finalPlace===2?100:0;e.p3=e.finalPlace===3?100:0;e.any=e.finalPlace<=3?100:0;});
  }else{arr.forEach((e,i)=>{e.finalPlace=i+1;});}
