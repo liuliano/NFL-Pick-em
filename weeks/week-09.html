@@ -714,7 +714,7 @@ function render(){
   if(!showMondayTB)return "";
   const tied=rankCounts[e.finalPlace]>1;
   const dist=finalMnfTotal===null?"":(" · off "+Math.abs(Number(e.tb)-finalMnfTotal));
-  return '<span class="rw-tb">TB '+e.tb+dist+(tied?' · TIED #'+e.finalPlace:'')+(finalMnfTotal===null&&e.finalPlace===3?' · Pending tiebreaker · '+games[games.length-1].join(' vs '):'')+'</span>';
+  return '<span class="rw-tb">TB '+e.tb+dist+(tied?' · TIED #'+e.finalPlace:'')+(finalMnfTotal===null&&e.finalPlace===3?' · Pending tiebreaker · Pick: '+(e.picks[games.length-1]||'Pending'):'')+'</span>';
  };
  document.getElementById("top10Results").innerHTML=ranked.slice(0,window.showAllRightWrong?ranked.length:10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+e.finalPlace+'</span><span class="rw-name">'+e.name+rankNote(e)+'</span><span class="rw-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
  window.displayedEntries=ranked;const rwButton=document.getElementById("toggleAllRightWrong");if(rwButton){rwButton.textContent=window.showAllRightWrong?"Show top 10 ↑":"Show all "+ranked.length+" players ↓";rwButton.setAttribute("aria-expanded",String(!!window.showAllRightWrong));}
