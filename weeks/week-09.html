@@ -689,7 +689,11 @@ function render(){
  const total=actualMnfTotal();
  arr.sort((a,b)=>b.correct-a.correct||(total===null?0:Math.abs(a.tb-total)-Math.abs(b.tb-total))||a.name.localeCompare(b.name));
  arr.forEach(e=>{e.finalPlace=1+arr.findIndex(x=>x.correct===e.correct&&(total===null||Math.abs(x.tb-total)===Math.abs(e.tb-total)));e.p1=e.finalPlace===1?100:0;e.p2=e.finalPlace===2?100:0;e.p3=e.finalPlace===3?100:0;e.any=e.finalPlace<=3?100:0;});
- }else{arr.forEach((e,i)=>{e.finalPlace=i+1;});}
+ }else{
+ // Provisional standings: same completed wins and same remaining opportunity share a rank.
+ // Probability estimates are display-only and must never split a tied rank.
+ arr.forEach(e=>{e.finalPlace=1+arr.filter(x=>x.correct>e.correct||(x.correct===e.correct&&x.possible>e.possible)).length;});
+ }
  // Player details must use the same resolved values as the leaderboard.
  window.finalPlacementOdds=Object.fromEntries(arr.map(e=>[e.name,{p1:e.p1,p2:e.p2,p3:e.p3,any:e.any}]));
  document.getElementById("score").textContent=done+" / "+games.length;
@@ -956,4 +960,13 @@ html.ios-device #playerDetail .player-game-wrap .pick-share b{font-size:15px!imp
 .league-games .scoreboard-team-record{font-size:12px;font-weight:700;color:#9ccdb1;white-space:nowrap}
 .league-games .scoreboard-team-score{font-size:25px;line-height:1.2;color:#fff;font-weight:900;font-variant-numeric:tabular-nums}
 @media(max-width:480px){.league-games .scoreboard-teams{gap:5px}.league-games .scoreboard-team{gap:4px}.league-games .scoreboard-team-logo{width:27px;height:27px}.league-games .scoreboard-team-info>b{font-size:16px}.league-games .scoreboard-team-score{font-size:23px}}
-</style><style id="live-leader-movement-v1">#topLeaders .leader-movement{font-size:11px;font-weight:850;white-space:nowrap;margin-left:5px}#topLeaders .leader-movement.up{color:#55dda0}#topLeaders .leader-movement.down{color:#ff9197}@media(max-width:420px){#topLeaders .leader-movement{font-size:10px;margin-left:2px}}</style></body></html>
+</style><style id="live-leader-movement-v1">#topLeaders .leader-movement{font-size:11px;font-weight:850;white-space:nowrap;margin-left:5px}#topLeaders .leader-movement.up{color:#55dda0}#topLeaders .leader-movement.down{color:#ff9197}@media(max-width:420px){#topLeaders .leader-movement{font-size:10px;margin-left:2px}}</style><style id="soft-cleanup-final-20261109">
+/* Late override so older mobile-specific rules cannot restore hard blue panels. */
+.league-record,.mobile-player .league-record,.compact-player .league-record{background:#1a392f!important;border:1px solid rgba(173,219,191,.15)!important;border-radius:17px!important;box-shadow:none!important;padding:13px 6px!important}
+.mp-odds span,.mobile-player .mp-odds span{background:#19362d!important;border:1px solid rgba(173,219,191,.12)!important;border-radius:16px!important}
+.mobile-player,.compact-player{border-radius:23px!important;border:1px solid rgba(173,219,191,.16)!important;background:#11291f!important;padding:16px!important;margin-bottom:11px!important}
+.game,.game-card{border-radius:23px!important;overflow:hidden}
+.game .pick-breakdown,.game .pick-split,.game .line-box,.game .pool-picks,.game .odds-panel{border-radius:16px!important}
+.game button,.game .see-picks,.game .pick-toggle{border-radius:15px!important}
+.mp-rank,.rw-rank{border-radius:12px!important;background:#24513e!important}
+</style></body></html>
