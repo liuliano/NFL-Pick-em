@@ -705,7 +705,7 @@ function render(){
  document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+e.finalPlace+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+e.possible+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
  document.getElementById("topLeaders").innerHTML=arr.filter((e,i)=>done===games.length?e.finalPlace<=3:i<3).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+arr.indexOf(e)+')"><span class="leader-place">'+['🥇','🥈','🥉'][Math.min(2,e.finalPlace-1)]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="leader-movement" data-leader-name="'+encodeURIComponent(e.name)+'"></span></button>').join("");
  const ranked=[...arr];
- document.getElementById("top10Results").innerHTML=ranked.slice(0,window.showAllRightWrong?ranked.length:10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+e.finalPlace+'</span><span class="rw-name">'+e.name+'</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
+ document.getElementById("top10Results").innerHTML=ranked.slice(0,window.showAllRightWrong?ranked.length:10).map((e,i)=>'<button type="button" class="rw-row" onclick="showPlayerByIndex('+i+')"><span class="rw-rank">#'+e.finalPlace+'</span><span class="rw-name">'+e.name+'</span><span class="rw-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="rw-right">✓ '+e.correct+' right</span><span class="rw-wrong">✕ '+(done-e.correct)+' wrong</span></button>').join("");
  window.displayedEntries=ranked;const rwButton=document.getElementById("toggleAllRightWrong");if(rwButton){rwButton.textContent=window.showAllRightWrong?"Show top 10 ↑":"Show all "+ranked.length+" players ↓";rwButton.setAttribute("aria-expanded",String(!!window.showAllRightWrong));}
  const openModal=document.getElementById("playerModal");
  if(openModal?.classList.contains("open")){
@@ -990,4 +990,12 @@ html.ios-device #playerDetail .player-game-wrap .pick-share b{font-size:15px!imp
 .game .line-box,.game .pick-breakdown,.game .pick-split,.game .pool-picks,.game .odds-panel{border-color:rgba(171,217,183,.17)!important;border-radius:14px!important}
 .game button{border-radius:13px!important}
 @media(max-width:390px){#mobileStandings .mobile-player{padding:12px!important}#mobileStandings .mp-name{font-size:15px!important}#mobileStandings .tap-note{font-size:10px!important}#mobileStandings .league-record b{font-size:17px!important}}
+</style><style id="top10-odds-20261109">
+/* Compact probability on every leaderboard row, preserving mobile fit. */
+#top10Results .rw-row{display:grid!important;grid-template-columns:34px minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;column-gap:10px!important;row-gap:4px!important;padding:12px 6px!important;border-bottom:1px solid rgba(170,218,188,.14)!important;border-radius:0!important}
+#top10Results .rw-rank{grid-column:1!important;grid-row:1 / span 2!important;align-self:center!important}
+#top10Results .rw-name{grid-column:2!important;grid-row:1!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#top10Results .rw-odds{grid-column:3!important;grid-row:1!important;justify-self:end!important;color:#a9e1be!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
+#top10Results .rw-right{grid-column:2!important;grid-row:2!important;font-size:11px!important}
+#top10Results .rw-wrong{grid-column:3!important;grid-row:2!important;justify-self:end!important;font-size:11px!important}
 </style></body></html>
