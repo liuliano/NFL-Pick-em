@@ -961,4 +961,13 @@ html.ios-device #playerDetail .player-game-wrap .pick-share b{font-size:15px!imp
  for(let n=2;n<=current;n++){const a=document.createElement('a');a.setAttribute('role','menuitem');a.href=n===5?'../index.html?week=5':'week-'+String(n).padStart(2,'0')+'.html'+(n<current?'?history=1':'');a.textContent=n+' · '+(n===current?'Current':'Final')+(n===viewing?' ✓':'');if(n===viewing)a.setAttribute('aria-current','page');menu.appendChild(a);}
  menu.hidden=true;btn.setAttribute('aria-expanded','false');
  }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();
-})();</script></body></html>
+})();</script><style id="soft-cleanup-final-20261109">
+/* Late override so older mobile-specific rules cannot restore hard blue panels. */
+.league-record,.mobile-player .league-record,.compact-player .league-record{background:#1a392f!important;border:1px solid rgba(173,219,191,.15)!important;border-radius:17px!important;box-shadow:none!important;padding:13px 6px!important}
+.mp-odds span,.mobile-player .mp-odds span{background:#19362d!important;border:1px solid rgba(173,219,191,.12)!important;border-radius:16px!important}
+.mobile-player,.compact-player{border-radius:23px!important;border:1px solid rgba(173,219,191,.16)!important;background:#11291f!important;padding:16px!important;margin-bottom:11px!important}
+.game,.game-card{border-radius:23px!important;overflow:hidden}
+.game .pick-breakdown,.game .pick-split,.game .line-box,.game .pool-picks,.game .odds-panel{border-radius:16px!important}
+.game button,.game .see-picks,.game .pick-toggle{border-radius:15px!important}
+.mp-rank,.rw-rank{border-radius:12px!important;background:#24513e!important}
+</style></body></html>
