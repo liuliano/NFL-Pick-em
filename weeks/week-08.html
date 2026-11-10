@@ -998,4 +998,15 @@ html.ios-device #playerDetail .player-game-wrap .pick-share b{font-size:15px!imp
 #top10Results .rw-odds{grid-column:3!important;grid-row:1!important;justify-self:end!important;color:#a9e1be!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
 #top10Results .rw-right{grid-column:2!important;grid-row:2!important;font-size:11px!important}
 #top10Results .rw-wrong{grid-column:3!important;grid-row:2!important;justify-self:end!important;font-size:11px!important}
-</style></body></html>
+</style><style id="header-clearance-definitive-20261109">
+/* Keep the full hero below both fixed navigation bars, with no duplicated gap. */
+body{padding-top:0!important}
+.wrap>.nav-header-spacer{display:block!important;height:calc(var(--weekbar-height,60px) + var(--quicknav-height,62px) + 12px)!important;min-height:0!important;margin:0!important;padding:0!important}
+.wrap>.hero{position:relative!important;top:auto!important;transform:none!important;margin-top:0!important}
+</style><script id="header-clearance-definitive-script-20261109">(function(){
+function sync(){const w=document.getElementById('multiweek-bar'),n=document.getElementById('mobileQuickNav'),s=document.querySelector('.wrap>.nav-header-spacer');if(!w||!n||!s)return;
+const wh=Math.ceil(w.getBoundingClientRect().height),nh=Math.ceil(n.getBoundingClientRect().height);
+document.documentElement.style.setProperty('--weekbar-height',wh+'px');document.documentElement.style.setProperty('--quicknav-height',nh+'px');
+s.style.setProperty('height',(wh+nh+12)+'px','important');s.style.setProperty('min-height','0px','important');
+}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();window.addEventListener('load',sync);window.addEventListener('resize',sync);
+})();</script></body></html>
