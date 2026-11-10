@@ -1009,4 +1009,13 @@ const wh=Math.ceil(w.getBoundingClientRect().height),nh=Math.ceil(n.getBoundingC
 document.documentElement.style.setProperty('--weekbar-height',wh+'px');document.documentElement.style.setProperty('--quicknav-height',nh+'px');
 s.style.setProperty('height',(wh+nh+12)+'px','important');s.style.setProperty('min-height','0px','important');
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();window.addEventListener('load',sync);window.addEventListener('resize',sync);
+})();</script><style id="hero-direct-offset-20261109">
+/* Position hero itself below fixed bars; avoid conflicting spacer measurements. */
+.wrap>.nav-header-spacer{height:0!important;min-height:0!important;display:none!important}
+.wrap>.hero{margin-top:calc(var(--weekbar-height,60px) + var(--quicknav-height,62px) + 14px)!important;top:auto!important;transform:none!important}
+</style><script id="hero-direct-offset-sync-20261109">(function(){
+function sync(){const b=document.getElementById('multiweek-bar'),n=document.getElementById('mobileQuickNav'),hero=document.querySelector('.wrap>.hero');if(!b||!n||!hero)return;
+const h=Math.ceil(b.getBoundingClientRect().height+n.getBoundingClientRect().height+14);
+hero.style.setProperty('margin-top',h+'px','important');
+}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();window.addEventListener('load',sync);window.addEventListener('resize',sync);
 })();</script></body></html>
