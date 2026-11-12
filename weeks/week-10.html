@@ -674,9 +674,9 @@ function render(){
      sameScore.sort((a,b)=>a.d-b.d);
      let k=0; while(k<sameScore.length&&pos<=3){
        const d=sameScore[k].d,tied=[]; while(k<sameScore.length&&sameScore[k].d===d)tied.push(sameScore[k++]);
-       const slots=[]; for(let x=0;x<tied.length&&pos+x<=3;x++)slots.push(pos+x);
-       const top3Share=slots.length/tied.length;
-       tied.forEach(x=>{const st=stats[x.e.name];if(slots.includes(1))st.p1+=1/tied.length;if(slots.includes(2))st.p2+=1/tied.length;if(slots.includes(3))st.p3+=1/tied.length;if(slots.length)st.any+=top3Share});
+       // Competition ranking: all equal-win/equal-TB-distance players share this place.
+       // Every player at shared #1, #2, or #3 earns full probability credit.
+       tied.forEach(x=>{const st=stats[x.e.name];if(pos===1)st.p1++;if(pos===2)st.p2++;if(pos===3)st.p3++;st.any++;});
        pos+=tied.length;
      }
    }
