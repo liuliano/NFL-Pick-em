@@ -594,8 +594,8 @@ let results={};
 Object.keys(savedResults).forEach(k=>{if(k.includes("-"))results[k]=savedResults[k];else if(games[+k])results[gameKey(+k)]=savedResults[k]});
 localStorage.setItem("nflw10results",JSON.stringify(results));
 let liveP={},liveML={},liveGame={},liveScore={},liveTotals={};
-try{const saved=JSON.parse(localStorage.getItem("nflw6liveodds")||"{}");if(saved&&typeof saved==="object")for(const [k,v] of Object.entries(saved)){const i=Number(k);if(Number.isInteger(i)&&i>=0&&i<games.length&&Number.isFinite(v?.home)&&Number.isFinite(v?.away)&&v.home!==0&&v.away!==0)liveML[i]=v;}}catch(e){}
-function saveLiveOdds(){try{localStorage.setItem("nflw6liveodds",JSON.stringify(liveML));}catch(e){}}
+try{const saved=JSON.parse(localStorage.getItem("nflw10liveodds")||"{}");if(saved&&typeof saved==="object")for(const [k,v] of Object.entries(saved)){const i=Number(k);if(Number.isInteger(i)&&i>=0&&i<games.length&&Number.isFinite(v?.home)&&Number.isFinite(v?.away)&&v.home!==0&&v.away!==0)liveML[i]=v;}}catch(e){}
+function saveLiveOdds(){try{localStorage.setItem("nflw10liveodds",JSON.stringify(liveML));}catch(e){}}
 
 // Favorites are scoped to this week; a verified closing line is retained for completed games.
 let week5Favorites=JSON.parse(localStorage.getItem("nflw10favorites")||"{}");
@@ -789,8 +789,8 @@ function setResult(i,v){const k=gameKey(i);if(v)results[k]=v;else delete results
 // Scoreboard payloads often omit odds. Check ESPN's per-game summary as a secondary source.
 const oddsRefreshAt={};
 // Restore projections on reload so the initial standings match the last refresh.
-try{const saved=JSON.parse(localStorage.getItem("nflw6projections")||"{}");for(const [k,v] of Object.entries(saved)){if(Number.isFinite(v)&&v>=0&&v<=1)liveP[k]=v;}}catch(e){}
-function saveProjections(){try{localStorage.setItem("nflw6projections",JSON.stringify(liveP));}catch(e){}}
+try{const saved=JSON.parse(localStorage.getItem("nflw10projections")||"{}");for(const [k,v] of Object.entries(saved)){if(Number.isFinite(v)&&v>=0&&v<=1)liveP[k]=v;}}catch(e){}
+function saveProjections(){try{localStorage.setItem("nflw10projections",JSON.stringify(liveP));}catch(e){}}
 async function refreshGameOdds(eventId,i,force=false){
  if(liveStatus[i]==="final"||(!force&&Date.now()-(oddsRefreshAt[i]||0)<(liveStatus[i]==="live"?60000:600000)))return;
  oddsRefreshAt[i]=Date.now();
