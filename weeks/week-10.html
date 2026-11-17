@@ -658,12 +658,12 @@ function projectedMnfTotal(){
   // Blend observed scoring pace with the verified pregame rate; never project below points scored.
   const pace=elapsed>0?scored/elapsed:verifiedPregame/3600;
   const rate=.65*(verifiedPregame/3600)+.35*Math.min(pace,0.04);
-  return {mean:scored+remaining*rate,sd:Math.max(0.5,10.5*Math.sqrt(remaining/3600)),source:"Live score and clock"};
+  return {mean:scored+remaining*rate,sd:Math.max(0.5,10.5*Math.sqrt(remaining/3600)),floor:scored,source:"Live score and clock"};
  }
  if(live&&a&&h&&a[1]===games[i][0]&&h[1]===games[i][1]){
   // Clock unavailable: use verified pregame total only as a conservative baseline,
   // and never predict fewer points than have already been scored.
-  return {mean:Math.max(verifiedPregame,Number(a[2])+Number(h[2])),sd:10.5,source:"Live score; clock unavailable"};
+  return {mean:Math.max(verifiedPregame,Number(a[2])+Number(h[2])),sd:10.5,floor:Number(a[2])+Number(h[2]),source:"Live score; clock unavailable"};
  }
  return {mean:verifiedPregame,sd:10.5,source:"Verified pregame line"};
 }
@@ -694,7 +694,7 @@ function render(){
  const normal=(mu,sd)=>{let u=1-random(),v=1-random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
  for(let n=0;n<N;n++){
    const winners=games.map((g,i)=>results[gameKey(i)]||((random()<(Number.isFinite(liveP[i])?liveP[i]:.5))?g[1]:g[0]));
-   const total=mnfForecast.sd===0?mnfForecast.mean:Math.max(0,Math.round(normal(mnfForecast.mean,mnfForecast.sd)));
+   const total=mnfForecast.sd===0?mnfForecast.mean:Math.max(mnfForecast.floor||0,Math.round(normal(mnfForecast.mean,mnfForecast.sd)));
    const rows=es.map(e=>({e,s:e.picks.reduce((a,p,i)=>a+(p===winners[i]?1:0),0),d:Math.abs(e.tb-total)})).sort((a,b)=>b.s-a.s||a.d-b.d);
    let pos=1,j=0;
    while(j<rows.length&&pos<=3){
