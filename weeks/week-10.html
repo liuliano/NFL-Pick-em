@@ -804,8 +804,10 @@ async function refreshGameOdds(eventId,i,force=false){
    const h=Number(item?.homeTeamOdds?.moneyLine),a=Number(item?.awayTeamOdds?.moneyLine);
    if(item?.homeTeamOdds?.moneyLine!=null&&item?.awayTeamOdds?.moneyLine!=null&&Number.isFinite(h)&&Number.isFinite(a)&&h!==0&&a!==0){
     liveML[i]={home:h,away:a,provider:item.provider?.name||"ESPN"};saveLiveOdds();rememberWeek5Favorite(i,liveML[i]);
-    {const implied=x=>x<0?-x/(100-x):100/(100+x);liveP[i]=implied(h)/(implied(h)+implied(a));saveProjections();}
-    render();return;
+    // Pregame moneylines must never overwrite ESPN live win probability.
+    if(liveStatus[i]==="scheduled"){const implied=x=>x<0?-x/(100-x):100/(100+x);liveP[i]=implied(h)/(implied(h)+implied(a));saveProjections();}
+    // The main refresh renders once after all odds/live-probability requests finish.
+    return;
    }
   }
   const p=detail.header?.competitions?.[0]?.predictor?.homeTeam?.gameProjection;
