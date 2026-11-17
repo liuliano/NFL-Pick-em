@@ -640,6 +640,33 @@ function actualMnfTotal(){
  if(!away||!home||away[1].toUpperCase()!==games[i][0]||home[1].toUpperCase()!==games[i][1])return null;
  return Number(away[2])+Number(home[2]);
 }
+// MNF total projection: verified pregame line, then actual live score and clock.
+// FanDuel 39.5 as reported by Action Network, Nov 16 2026 7:00 PM ET.
+// Never substitute an invented 47.5-point total when the feed is missing.
+function projectedMnfTotal(){
+ const i=games.length-1, known=actualMnfTotal();
+ if(known!==null)return {mean:known,sd:0,source:"Final ESPN score"};
+ const verifiedPregame=39.5;
+ const live=liveStatus[i]==="live", score=String(liveScore[i]||"");
+ const parts=score.split(/\s*[•·]\s*/);
+ const a=parts[0]?.match(/([A-Z]{2,3})\s+(\d+)\s*$/),h=parts[1]?.match(/([A-Z]{2,3})\s+(\d+)\s*$/);
+ const clock=String(liveGame[i]||"");
+ const q=clock.match(/(?:Q(?:uarter)?\s*([1-4])|([1-4])(?:st|nd|rd|th))[^\d]*(\d{1,2}):(\d{2})/i);
+ if(live&&a&&h&&q&&a[1]===games[i][0]&&h[1]===games[i][1]){
+  const elapsed=(Number(q[1]||q[2])-1)*900+(900-Number(q[3])*60-Number(q[4]));
+  const remaining=Math.max(0,3600-elapsed), scored=Number(a[2])+Number(h[2]);
+  // Blend observed scoring pace with the verified pregame rate; never project below points scored.
+  const pace=elapsed>0?scored/elapsed:verifiedPregame/3600;
+  const rate=.65*(verifiedPregame/3600)+.35*Math.min(pace,0.04);
+  return {mean:scored+remaining*rate,sd:Math.max(0.5,10.5*Math.sqrt(remaining/3600)),source:"Live score and clock"};
+ }
+ if(live&&a&&h&&a[1]===games[i][0]&&h[1]===games[i][1]){
+  // Clock unavailable: use verified pregame total only as a conservative baseline,
+  // and never predict fewer points than have already been scored.
+  return {mean:Math.max(verifiedPregame,Number(a[2])+Number(h[2])),sd:10.5,source:"Live score; clock unavailable"};
+ }
+ return {mean:verifiedPregame,sd:10.5,source:"Verified pregame line"};
+}
 function rankTieDistance(e){const total=actualMnfTotal();return total===null?Infinity:Math.abs(Number(e.tb)-total);}
 function compareLeagueRank(a,b){
  const wins=b.correct-a.correct||b.possible-a.possible;
@@ -659,6 +686,7 @@ function render(){
  displayOrder.forEach((i,position)=>{const el=gamesEl.querySelector('.game[data-game-index="'+i+'"]');if(el)el.style.order=String(position)});
  const done=games.filter((g,i)=>results[gameKey(i)]).length, es=entries(), N=100000, stats={};
  es.forEach(e=>stats[e.name]={p1:0,p2:0,p3:0,any:0});
+ const mnfForecast=projectedMnfTotal();
  // Stable simulation: identical picks, results and projections produce identical rankings.
  const simulationKey=JSON.stringify({week:10,picks:es.map(e=>[e.name,e.picks,e.tb])}); // Fixed common random draws across score/odds refreshes: changing projections no longer reshuffles Monte Carlo samples.
  let seed=2166136261;for(let i=0;i<simulationKey.length;i++){seed^=simulationKey.charCodeAt(i);seed=Math.imul(seed,16777619)}seed>>>=0;
@@ -666,10 +694,7 @@ function render(){
  const normal=(mu,sd)=>{let u=1-random(),v=1-random();return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)};
  for(let n=0;n<N;n++){
    const winners=games.map((g,i)=>results[gameKey(i)]||((random()<(Number.isFinite(liveP[i])?liveP[i]:.5))?g[1]:g[0]));
-   const knownTotal=actualMnfTotal();
-   const mondayLine=Number(liveTotals[13]);
-   const projectedTotal=Number.isFinite(mondayLine)&&mondayLine>0?mondayLine:47.5;
-   const total=knownTotal!==null?knownTotal:Math.max(0,Math.round(normal(projectedTotal,10.5)));
+   const total=mnfForecast.sd===0?mnfForecast.mean:Math.max(0,Math.round(normal(mnfForecast.mean,mnfForecast.sd)));
    const rows=es.map(e=>({e,s:e.picks.reduce((a,p,i)=>a+(p===winners[i]?1:0),0),d:Math.abs(e.tb-total)})).sort((a,b)=>b.s-a.s||a.d-b.d);
    let pos=1,j=0;
    while(j<rows.length&&pos<=3){
