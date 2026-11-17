@@ -1054,4 +1054,25 @@ function sync(){const b=document.getElementById('multiweek-bar'),n=document.getE
 const h=Math.ceil(b.getBoundingClientRect().height+n.getBoundingClientRect().height+14);
 hero.style.setProperty('margin-top',h+'px','important');
 }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();window.addEventListener('load',sync);window.addEventListener('resize',sync);
-})();</script></body></html>
+})();</script><style id="week10-leaderboard-cleanup-20261116">
+/* Keep all shared podium ranks visible without the cramped, industrial rows. */
+.wrap>.leaders-card,.wrap>.top10-card{border-radius:22px!important;overflow:hidden!important}
+#topLeaders{display:grid;gap:8px;padding:8px 0 2px}
+#topLeaders .leader-row{display:grid!important;grid-template-columns:38px minmax(0,1fr) auto!important;grid-template-areas:"place name score" "place odds odds" "movement movement movement";align-items:center!important;column-gap:10px!important;row-gap:3px!important;width:100%!important;min-width:0!important;margin:0!important;padding:12px 13px!important;border:1px solid rgba(164,211,177,.16)!important;border-radius:16px!important;background:linear-gradient(135deg,#142e22,#10251b)!important;box-shadow:none!important;text-align:left}
+#topLeaders .leader-place{grid-area:place;align-self:center}
+#topLeaders .leader-name{grid-area:name;min-width:0;overflow-wrap:anywhere;font-size:15px!important;line-height:1.25}
+#topLeaders .leader-score{grid-area:score;white-space:nowrap;font-size:12px!important}
+#topLeaders .leader-odds{grid-area:odds;justify-self:end;color:#a8e5be!important;font-size:13px!important;white-space:nowrap}
+#topLeaders .leader-movement{grid-area:movement;justify-self:start}
+#top10Results .rw-row{border-radius:14px!important;margin:3px 0!important;padding:12px 10px!important;border-color:rgba(164,211,177,.13)!important}
+#top10Results .rw-odds{color:#a8e5be!important}
+@media(max-width:480px){
+ .wrap>.leaders-card,.wrap>.top10-card{padding:15px 13px!important}
+ #topLeaders{gap:7px}
+ #topLeaders .leader-row{grid-template-columns:32px minmax(0,1fr) auto!important;padding:11px!important}
+ #topLeaders .leader-name{font-size:14px!important}
+ #topLeaders .leader-score{font-size:11px!important}
+ #topLeaders .leader-odds{font-size:12px!important}
+ #top10Results .rw-row{min-width:0!important}
+}
+</style></body></html>
