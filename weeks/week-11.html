@@ -731,7 +731,11 @@ function render(){
  document.getElementById("upsetNote").textContent=upsetTeams.length?upsetTeams.join(" • ")+" won as underdogs":"Underdog victories • confirmed odds only";
  document.getElementById("place").textContent=arr.length+" PLAYERS";
  document.getElementById("standings").innerHTML=arr.map((e,i)=>'<tr><td>'+e.finalPlace+'</td><td><button type="button" class="odds-link" data-player="'+i+'">'+e.name+'</button></td><td>'+e.correct+'</td><td>'+games.length+'</td><td>'+e.p1.toFixed(1)+'%</td><td>'+e.p2.toFixed(1)+'%</td><td>'+e.p3.toFixed(1)+'%</td><td>'+e.any.toFixed(1)+'%</td><td>'+e.tb+'</td></tr>').join("");
- document.getElementById("topLeaders").innerHTML=arr.filter((e,i)=>i<3||(done>0&&arr[2]&&arr[2].finalPlace===3&&e.finalPlace===3)).map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+arr.indexOf(e)+')"><span class="leader-place">'+['🥇','🥈','🥉'][Math.min(2,e.finalPlace-1)]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="leader-movement" data-leader-name="'+encodeURIComponent(e.name)+'"></span></button>').join("");
+ const podiumOdds=[...arr].sort((a,b)=>b.any-a.any||b.p1-a.p1||b.p2-a.p2||b.correct-a.correct||a.name.localeCompare(b.name));
+ const podiumShown=done===games.length
+  ? [...arr].filter(e=>e.finalPlace<=3)
+  : podiumOdds.slice(0,3);
+ document.getElementById("topLeaders").innerHTML=podiumShown.map((e,i)=>'<button type="button" class="leader-row" onclick="showPlayerByIndex('+arr.indexOf(e)+')"><span class="leader-place">'+['🥇','🥈','🥉'][Math.min(2,(done===games.length?e.finalPlace-1:i))]+'</span><span class="leader-name">'+e.name+'</span><span class="leader-score">'+e.correct+' correct</span><span class="leader-odds">'+e.any.toFixed(1)+'% Top 3</span><span class="leader-movement" data-leader-name="'+encodeURIComponent(e.name)+'"></span></button>').join("");
  const ranked=[...arr];
  // Monday tiebreaker annotations: show predictions once Monday begins in Eastern time.
  const mondayStart=Date.parse(kickoffET[games.length-1].slice(0,10)+"T00:00:00-05:00");
