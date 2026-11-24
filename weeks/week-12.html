@@ -891,7 +891,7 @@ async function refreshNFL(force=false){const s=document.getElementById("apiStatu
  }
  saveProjections();render();s.textContent="ESPN refreshed • "+matched+" Week 12 games matched • "+new Date().toLocaleTimeString();}catch(e){s.textContent="ESPN refresh failed: "+e.message+" • manual results still work."}}
 function resetGames(){results={};localStorage.removeItem("nflw12results");render()}
-function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw6entries",raw);render()}
+function saveEntries(){raw=document.getElementById("editor").value;localStorage.setItem("nflw12entries",raw);render()}
 function restoreEntries(){raw=week7OfficialPicks;localStorage.setItem("nflw12entries",raw);render()}
 render();refreshNFL();
 try{
